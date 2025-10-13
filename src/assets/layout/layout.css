@@ -17,6 +17,8 @@
     --focus-ring-color: var(--p-focus-ring-color);
     --focus-ring-offset: var(--p-focus-ring-offset);
     --focus-ring-shadow: var(--p-focus-ring-shadow);
+}
+:root {
     --surface-ground: var(--p-surface-100);
     --code-background: var(--p-surface-900);
     --code-color: var(--p-surface-200);
