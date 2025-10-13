@@ -1,0 +1,81 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "name": "Abdullah",
+      "email": "abdullah@example.com",
+      "password": "123456"
+    },
+    {
+      "id": "c001",
+      "name": "Abdullah",
+      "email": "abdullahshokr9@gmail.com",
+      "password": "123456789"
+    }
+  ],
+  "events": [
+    {
+      "id": "1",
+      "name": "Tech Conference 2025",
+      "description": "AI and Future Tech Event",
+      "category": "Technology",
+      "location": "Riyadh",
+      "startDate": "2025-11-10",
+      "endDate": "2025-11-12",
+      "createdBy": 1,
+      "status": "Upcoming",
+      "guests": [
+        1
+      ],
+      "tasks": [
+        1
+      ],
+      "expenses": [
+        1
+      ],
+      "feedback": [
+        1
+      ]
+    }
+  ],
+  "guests": [
+    {
+      "id": "1",
+      "name": "Omar Ali",
+      "email": "omar@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    }
+  ],
+  "tasks": [
+    {
+      "id": "1",
+      "eventId": 1,
+      "title": "Book Venue",
+      "assignedTo": "Ali",
+      "priority": "High",
+      "status": "In Progress",
+      "deadline": "2025-11-05"
+    }
+  ],
+  "expenses": [
+    {
+      "id": "1",
+      "eventId": 1,
+      "name": "Venue Booking",
+      "amount": 5000,
+      "category": "Venue",
+      "date": "2025-10-10"
+    }
+  ],
+  "feedback": [
+    {
+      "id": "1",
+      "guestId": 1,
+      "eventId": 1,
+      "rating": 4,
+      "comment": "Great event!",
+      "createdAt": "2025-11-13"
+    }
+  ]
+}
