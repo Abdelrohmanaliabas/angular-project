@@ -1,0 +1,608 @@
+<div class="min-h-screen bg-white">
+  <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-20">
+        <div class="flex items-center space-x-2">
+          <div
+            class="w-10 h-10 bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center">
+            <span class="text-white font-bold text-xl">@</span>
+          </div>
+          <span class="text-2xl font-bold text-gray-900">Expovent</span>
+        </div>
+
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#home" class="text-gray-700 hover:text-pink-500 transition">Home</a>
+          <a href="#about" class="text-gray-700 hover:text-pink-500 transition">About</a>
+          <a href="#speakers" class="text-gray-700 hover:text-pink-500 transition">Speakers</a>
+          <a href="#schedule" class="text-gray-700 hover:text-pink-500 transition">Schedule</a>
+          <a href="#blog" class="text-gray-700 hover:text-pink-500 transition">Blog</a>
+          <button (click)="getTicket()"
+            class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300">
+            Get Ticket
+          </button>
+
+
+        </div>
+
+        <button class="md:hidden" (click)="toggleMenu()">
+          <svg *ngIf="!isMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <svg *ngIf="isMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </nav>
+  <div *ngIf="isMenuOpen" class="fixed inset-0 bg-gray-900/95 z-40 md:hidden pt-20">
+    <div class="flex flex-col items-center space-y-6 p-8">
+      <a href="#home" class="text-white text-xl">Home</a>
+      <a href="#about" class="text-white text-xl">About</a>
+      <a href="#speakers" class="text-white text-xl">Speakers</a>
+      <a href="#schedule" class="text-white text-xl">Schedule</a>
+      <a href="#blog" class="text-white text-xl">Blog</a>
+      <button class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-3 rounded-lg">
+        Buy Ticket
+      </button>
+    </div>
+  </div>
+
+  <section id="home"
+    class="relative min-h-screen flex items-center bg-gradient-to-br from-gray-900 via-gray-800 to-blue-900 overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+      <div class="absolute top-20 left-10 w-32 h-32 border-4 border-pink-500 rounded-full"></div>
+      <div class="absolute top-40 right-20 w-3 h-3 bg-pink-500 rounded-full"></div>
+      <div class="absolute bottom-40 left-1/4 w-2 h-2 bg-pink-500 rounded-full"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 grid md:grid-cols-2 gap-12 items-center relative z-10">
+      <div>
+        <div class="text-pink-500 font-semibold mb-4 tracking-wider">MEET UP 2023</div>
+        <h1 class="text-6xl md:text-7xl font-bold text-white mb-8 leading-tight">
+          DIGITAL<br />
+          THINKERS<br />
+          <span class="text-pink-500">CONFERENCE</span>
+        </h1>
+        <button
+          class="border-2 border-white text-white px-8 py-4 rounded-full hover:bg-white hover:text-gray-900 transition text-lg">
+          Register Now
+        </button>
+      </div>
+
+      <div class="relative">
+        <div class="bg-white rounded-2xl p-8 shadow-2xl">
+          <div class="flex items-center space-x-4 mb-6">
+            <div class="w-12 h-12 bg-pink-500 rounded-lg flex items-center justify-center">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <div class="text-gray-500 text-sm">WHEN AND WHERE</div>
+              <div class="font-bold text-lg">November 9-10</div>
+              <div class="text-gray-700">The Midway SF</div>
+              <div class="flex items-center text-pink-500 text-sm mt-1">
+                <div class="w-2 h-2 bg-pink-500 rounded-full mr-2"></div>
+                Online
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-4 gap-4 mt-8">
+            <div *ngFor="let item of getTimeUnits()" class="text-center">
+              <div class="text-3xl font-bold text-gray-900">{{ padZero(item.value) }}</div>
+              <div class="text-gray-500 text-sm capitalize">{{ item.unit }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="about" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="text-blue-600 font-semibold mb-4">ABOUT THIS EVENT</div>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            EXPERIENCE A TRUE<br />
+            DIGITAL <span class="text-pink-500">CONFERENCE</span>
+          </h2>
+          <p class="text-gray-600 mb-4">
+            How you transform your business as technology, consumer habits industry dynamic
+          </p>
+          <p class="text-gray-600 mb-4">
+            Velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec
+            sagittis sem nibh.
+          </p>
+          <p class="text-gray-600 mb-8">
+            Lorem ipsum proin gravida nibh vel velit auctor aliquet. Aeneansollicitudin, lorem quis bibendum autonisi
+            elit consequat ipsum nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursusa sit amet
+            mauris. Morbi accumsan ipsum velit." Nam nec tellus a odio tincidunt.
+          </p>
+
+          <div class="flex items-center space-x-4 mb-8">
+            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+            </svg>
+            <div>
+              <div class="text-gray-500 text-sm">WHEN AND WHERE</div>
+              <div class="font-bold">November 9-10</div>
+              <div class="text-gray-700">The Midway SF, Zoom</div>
+              <div class="flex items-center text-pink-500 text-sm mt-1">
+                <div class="w-2 h-2 bg-pink-500 rounded-full mr-2"></div>
+                Online
+              </div>
+            </div>
+          </div>
+
+          <button
+            class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-4 rounded-lg hover:shadow-lg transition">
+            Join Now
+          </button>
+        </div>
+
+        <div class="relative">
+          <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800" alt="Conference"
+            class="rounded-2xl shadow-2xl" />
+          <div class="absolute inset-0 flex items-center justify-center">
+            <button
+              class="w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition">
+              <div class="text-pink-500 text-xs font-bold">PLAY<br />TRAILER</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="py-20 bg-gradient-to-br from-gray-900 to-blue-900 text-white relative overflow-hidden">
+    <div class="absolute right-0 top-0 w-full h-full opacity-20">
+      <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2" alt="" class="object-cover" />
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="grid grid-cols-2 gap-8">
+          <div class="text-center">
+            <div class="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9">
+                </path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Build Networking</h3>
+          </div>
+          <div class="text-center">
+            <div class="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Meet New People</h3>
+          </div>
+          <div class="text-center">
+            <div class="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Experience Speakers</h3>
+          </div>
+          <div class="text-center">
+            <div class="w-20 h-20 border-2 border-white rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                </path>
+              </svg>
+            </div>
+            <h3 class="text-xl font-bold">Lot's Of Fun</h3>
+          </div>
+        </div>
+
+        <div>
+          <div class="text-pink-500 font-semibold mb-4">WHY JOIN EVENT</div>
+          <h2 class="text-4xl md:text-5xl font-bold mb-6">
+            WHY YOU SHOULD<br />
+            <span class="text-pink-500">JOIN THIS</span> EVENT
+          </h2>
+          <p class="text-gray-300 mb-4">
+            Velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec
+            sagittis sem nibh.
+          </p>
+          <p class="text-gray-300 mb-8">
+            Lorem ipsum proin gravida nibh vel velit auctor aliquet. Aeneansollicitudin, lorem quis bibendum autonisi
+            elit consequat ipsum nec sagittis sem nibh id elit. Duis sed odio sit amet nibh vulputate cursusa sit amet
+            mauris. Morbi accumsan ipsum velit." Nam nec tellus a odio tincidunt.
+          </p>
+          <button
+            class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-4 rounded-lg hover:shadow-lg transition">
+            Join Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Speakers Section -->
+  <section id="speakers" class="py-20 bg-gradient-to-br from-gray-900 to-blue-900 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
+        <div *ngFor="let speaker of speakers; let i = index" class="relative group">
+          <img [src]="speaker.image" [alt]="'Speaker ' + (i + 1)"
+            class="w-full aspect-square object-cover rounded-lg shadow-xl group-hover:scale-105 transition" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Schedule Section -->
+  <section id="schedule" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <div class="text-blue-600 font-semibold mb-4">SCHEDULE OF EVENT</div>
+        <h2 class="text-4xl md:text-5xl font-bold">
+          CONFERENCE <span class="text-pink-500">SCHEDULE</span>
+        </h2>
+      </div>
+
+      <div class="flex justify-center space-x-4 mb-12">
+        <button
+          [class]="activeDay === 'day1' ? 'bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold transition' : 'bg-white text-gray-700 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold transition'"
+          (click)="setActiveDay('day1')">
+          Day One
+        </button>
+        <button
+          [class]="activeDay === 'day2' ? 'bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold transition' : 'bg-white text-gray-700 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold transition'"
+          (click)="setActiveDay('day2')">
+          Day Two
+        </button>
+        <button
+          [class]="activeDay === 'day3' ? 'bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold transition' : 'bg-white text-gray-700 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold transition'"
+          (click)="setActiveDay('day3')">
+          Day Three
+        </button>
+      </div>
+
+      <div class="space-y-6">
+        <div *ngFor="let item of scheduleData[activeDay]; let i = index"
+          class="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div class="p-8">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-6">
+                <img [src]="item.image" [alt]="item.speaker" class="w-20 h-20 rounded-full object-cover" />
+                <div>
+                  <h3 class="text-xl font-bold">{{ item.speaker }}</h3>
+                  <p class="text-gray-600">{{ item.role }}</p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-8">
+                <h4 class="text-xl font-bold">{{ item.title }}</h4>
+                <button (click)="toggleScheduleItem(i)" class="text-2xl font-light">
+                  {{ item.expanded ? '−' : '+' }}
+                </button>
+              </div>
+            </div>
+
+            <div *ngIf="item.expanded" class="mt-6">
+              <p class="text-gray-600 mb-4">
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam, nulla. Veritatis magnam esse
+                laboriosam aliquam sunt voluptate sequi nesciunt officia, sint culpa! Numquam, soluta commodi. Ex
+                laborum natus iste nihil?
+              </p>
+              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200" alt="Conference"
+                class="w-full rounded-xl" />
+              <div class="flex items-center space-x-6 mt-4 text-gray-600">
+                <div class="flex items-center space-x-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                  </svg>
+                  <span>{{ item.date }}</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                  </svg>
+                  <span>{{ item.date }}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="py-20 bg-gradient-to-r from-pink-500 via-red-500 to-orange-500 text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-30">
+      <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=1600" alt=""
+        class="w-full h-full object-cover" />
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        <div class="text-center">
+          <svg class="w-12 h-12 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+            </path>
+          </svg>
+          <div class="text-5xl font-bold mb-2">1030</div>
+          <div class="text-lg">Participants</div>
+        </div>
+        <div class="text-center">
+          <svg class="w-12 h-12 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+            </path>
+          </svg>
+          <div class="text-5xl font-bold mb-2">1600</div>
+          <div class="text-lg">Speakers</div>
+        </div>
+        <div class="text-center">
+          <svg class="w-12 h-12 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+            </path>
+          </svg>
+          <div class="text-5xl font-bold mb-2">1230</div>
+          <div class="text-lg">Workshop</div>
+        </div>
+        <div class="text-center">
+          <svg class="w-12 h-12 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z">
+            </path>
+          </svg>
+          <div class="text-5xl font-bold mb-2">1070</div>
+          <div class="text-lg">Awards Win</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <div class="text-blue-600 font-semibold mb-4">PARTICIPANTS REVIEW</div>
+        <h2 class="text-4xl md:text-5xl font-bold">
+          PEOPLES <span class="text-pink-500">TESTIMONIAL</span>
+        </h2>
+      </div>
+
+      <div class="relative">
+        <div class="bg-white rounded-2xl p-12 shadow-xl text-center">
+          <div class="flex justify-center mb-8">
+            <img [src]="testimonials[currentTestimonial].image" [alt]="testimonials[currentTestimonial].name"
+              class="w-32 h-32 rounded-full object-cover border-4 border-yellow-400" />
+          </div>
+          <div class="text-6xl text-gray-300 mb-4">"</div>
+          <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+            {{ testimonials[currentTestimonial].text }}
+          </p>
+          <h3 class="text-xl font-bold text-pink-500">{{ testimonials[currentTestimonial].name }}</h3>
+          <p class="text-gray-600">{{ testimonials[currentTestimonial].role }}</p>
+        </div>
+
+        <button (click)="previousTestimonial()"
+          class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        <button (click)="nextTestimonial()"
+          class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="flex justify-center space-x-8 mt-12">
+        <img *ngFor="let avatar of testimonialAvatars" [src]="avatar" alt=""
+          class="w-16 h-16 rounded-full object-cover opacity-50 hover:opacity-100 transition cursor-pointer" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <img *ngFor="let image of galleryImages; let i = index" [src]="image" [alt]="'Gallery ' + (i + 1)"
+          class="w-full aspect-video object-cover rounded-lg hover:scale-105 transition" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsors Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <div class="text-blue-600 font-semibold mb-4">EVENT SPONSORS</div>
+        <h2 class="text-4xl md:text-5xl font-bold">
+          ORGANIZE <span class="text-pink-500">PARTNER</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-12">
+        <div *ngFor="let sponsor of sponsors" class="flex items-center justify-center">
+          <div [class]="'text-3xl font-bold ' + sponsor.color">{{ sponsor.name }}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <div class="text-blue-600 font-semibold mb-4">LATEST NEWS FROM BLOG</div>
+        <h2 class="text-4xl md:text-5xl font-bold">
+          EXPOVENT <span class="text-pink-500">INSIGHT</span>
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div *ngFor="let post of blogPosts"
+          class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
+          <img [src]="post.image" [alt]="post.title" class="w-full h-64 object-cover" />
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-4 hover:text-pink-500 cursor-pointer transition">
+              {{ post.title }}
+            </h3>
+            <div class="flex items-center justify-between text-gray-500 text-sm mb-4">
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                </svg>
+                <span>{{ post.date }}</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z">
+                  </path>
+                </svg>
+                <span>{{ post.comments }} Comments</span>
+              </div>
+            </div>
+            <span
+              class="inline-block bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs px-4 py-1 rounded-full">
+              Business
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gradient-to-br from-gray-900 via-blue-900 to-gray-900 text-white py-16 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-32 h-32">
+      <svg viewBox="0 0 100 100" class="text-pink-500 opacity-20">
+        <path d="M20,50 Q30,20 50,30 T80,50" fill="none" stroke="currentColor" stroke-width="2" />
+      </svg>
+    </div>
+    <div class="absolute bottom-0 right-0 w-48 h-48">
+      <div class="grid grid-cols-6 gap-1">
+        <div *ngFor="let i of [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23]"
+          [class]="(i % 3 === 0 ? 'bg-pink-500' : 'bg-white') + ' w-2 h-2 rounded-full opacity-30'">
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid md:grid-cols-4 gap-12 mb-12">
+        <div>
+          <div class="flex items-center space-x-2 mb-6">
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center">
+              <span class="text-white font-bold text-xl">@</span>
+            </div>
+            <span class="text-2xl font-bold">Expovent</span>
+          </div>
+          <p class="text-gray-300 mb-6">
+            Velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum auctor, nisi elit consequat ipsum, nec
+            sagittis sem nibh. aliquam purus sit amet magna elemen facilisis. Enim praesent elementum facilisis.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-pink-500 transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+              </svg>
+            </a>
+            <a href="#"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-pink-500 transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+              </svg>
+            </a>
+            <a href="#"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-pink-500 transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <a href="#"
+              class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-pink-500 transition">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-6">Useful Links</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-300 hover:text-pink-500 transition">› Speakers</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-pink-500 transition">› Venue Info</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-pink-500 transition">› Our Partners</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-pink-500 transition">› Contact Support</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-6">Useful Links</h3>
+          <ul class="space-y-3">
+            <li><a href="#" class="text-gray-300 hover:text-pink-500 transition">› Business Conference</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-pink-500 transition">› Design Conference</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-pink-500 transition">› Web Design Seminar</a></li>
+            <li><a href="#" class="text-gray-300 hover:text-pink-500 transition">› Global Conference</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="text-xl font-bold mb-6">Useful Links</h3>
+          <p class="text-gray-300 mb-4">
+            Subscribe Our Newsletter To Get Latest Update And News
+          </p>
+          <div class="flex">
+            <input type="email" placeholder="Enter mail"
+              class="flex-1 bg-gray-800 px-4 py-3 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-pink-500 text-white" />
+            <button class="bg-gradient-to-r from-pink-500 to-red-500 px-6 py-3 rounded-r-lg hover:shadow-lg transition">
+              →
+            </button>
+          </div>
+          <button
+            class="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white px-6 py-3 rounded-lg mt-4 hover:shadow-lg transition font-semibold">
+            Subscribe Now
+          </button>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700 pt-8">
+        <p class="text-center text-gray-400">
+          Copyright & design by @Bdevs - 2023
+        </p>
+      </div>
+    </div>
+
+    <div class="fixed bottom-8 right-8 z-50">
+      <button (click)="scrollToTop()"
+        class="w-12 h-12 bg-gradient-to-r from-pink-500 to-red-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition">
+        <span class="text-white text-xl">↑</span>
+      </button>
+    </div>
+  </footer>
+</div>
