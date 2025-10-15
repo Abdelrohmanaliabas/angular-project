@@ -9,8 +9,8 @@ import { About } from './landing/about/about';
 import { Speakers } from './landing/speakers/speakers';
 import { Schedule } from './landing/schedule/schedule';
 import { Blog } from './landing/blog/blog';
-
-import { MainLayout } from './layouts/main-layout/main-layout';
+import { Main } from './components/dashboard/main/main';
+import { MainLayout } from './layout/main-layout/main-layout';
 
 export const routes: Routes = [
   {
@@ -26,5 +26,9 @@ export const routes: Routes = [
       { path: 'blog', component: Blog },
     ],
   },
+  { path: 'auth', component: Auth },
+  { path: 'register', component: Register },
+  { path: 'dashboard', component: Dashboard },
+  { path: 'main', component: Main },
   { path: '**', redirectTo: '' },
 ];
