@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AppFloatingconfigurator } from '../../../layout/component/app.floatingconfigurator/app.floatingconfigurator';
+import { AppToggletheme } from '../../../layout/component/app-toggletheme/app-toggletheme';
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule,AppFloatingconfigurator],
+  imports: [CommonModule,AppToggletheme],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })
