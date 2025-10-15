@@ -1,0 +1,58 @@
+<nav class="fixed  top-0 w-full bg-white/95 backdrop-blur-sm z-50 shadow-sm">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo -->
+      <div class="flex items-center space-x-2 cursor-pointer" routerLink="/">
+        <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-red-500 rounded-full flex items-center justify-center">
+          <span class="text-white font-bold text-xl">@</span>
+        </div>
+        <span class="text-2xl font-bold text-gray-900">Expovent</span>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a routerLink="/home" routerLinkActive="text-pink-500"
+          class="text-gray-700 hover:text-pink-500 transition">Home</a>
+        <a routerLink="/about" routerLinkActive="text-pink-500"
+          class="text-gray-700 hover:text-pink-500 transition">About</a>
+        <a routerLink="/speakers" routerLinkActive="text-pink-500"
+          class="text-gray-700 hover:text-pink-500 transition">Speakers</a>
+        <a routerLink="/schedule" routerLinkActive="text-pink-500"
+          class="text-gray-700 hover:text-pink-500 transition">Schedule</a>
+        <a routerLink="/blog" routerLinkActive="text-pink-500"
+          class="text-gray-700 hover:text-pink-500 transition">Blog</a>
+
+        <a routerLink="/get-ticket"
+          class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition duration-300">
+          Get Ticket
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button class="md:hidden" (click)="toggleMenu()">
+        <svg *ngIf="!isMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+        <svg *ngIf="isMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+</nav>
+
+<!-- Mobile Menu -->
+<div *ngIf="isMenuOpen" class="fixed inset-0 bg-gray-900/95 z-40 md:hidden pt-20">
+  <div class="flex flex-col items-center space-y-6 p-8">
+    <a routerLink="/home" (click)="toggleMenu()" class="text-white text-xl">Home</a>
+    <a routerLink="/about" (click)="toggleMenu()" class="text-white text-xl">About</a>
+    <a routerLink="/speakers" (click)="toggleMenu()" class="text-white text-xl">Speakers</a>
+    <a routerLink="/schedule" (click)="toggleMenu()" class="text-white text-xl">Schedule</a>
+    <a routerLink="/blog" (click)="toggleMenu()" class="text-white text-xl">Blog</a>
+    <a routerLink="/get-ticket" (click)="toggleMenu()"
+      class="bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-3 rounded-lg">
+      Buy Ticket
+    </a>
+  </div>
+</div>
