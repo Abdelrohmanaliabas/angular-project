@@ -1,1 +1,113 @@
-<p>profile-setting works!</p>
+
+  <div class="mx-auto min-h-screen p-8">
+    <div class="bg-gray-800 rounded-xl shadow-2xl p-8">
+        <h2 class="border-b-1 pb-5">Account Information</h2>
+      <form class="text-xl">
+        <div class="space-y-6">
+          <!-- First Name -->
+          <div>
+            <label for="first-name" class="block text-gray-300 mb-2 font-medium">First Name</label>
+            <input type="text" id="first-name" name="first-name" placeholder="Enter your first name"
+              class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-400" />
+          </div>
+
+          <!-- Last Name -->
+          <div>
+            <label for="last-name" class="block text-gray-300 mb-2 font-medium">Last Name</label>
+            <input type="text" id="last-name" name="last-name" placeholder="Enter your last name"
+              class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-400" />
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-gray-300 mb-2 font-medium">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email"
+              class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-400" />
+          </div>
+
+          <!-- Phone -->
+          <div>
+            <label class="block text-gray-300 mb-2 font-medium">Phone</label>
+            <div class="grid grid-cols-3 gap-4">
+              <input type="text" name="country-code" placeholder="+1"
+                class="col-span-1 bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-400" />
+              <input type="text" name="phone-number" placeholder="123-456-7890"
+                class="col-span-2 bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-400" />
+            </div>
+          </div>
+
+          <!-- Gender -->
+          <div>
+            <label for="gender" class="block text-gray-300 mb-2 font-medium">Gender</label>
+            <div class="relative">
+              <select id="gender" name="gender"
+                class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-pink-500">
+                <option value="">Select</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+              <svg class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+                fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Language -->
+          <div>
+            <label for="language" class="block text-gray-300 mb-2 font-medium">Language</label>
+            <div class="relative">
+              <select id="language" name="language"
+                class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-pink-500">
+                <option value="">Select a language</option>
+                <option>Afrikaans</option>
+                <option>English</option>
+                <option>Spanish</option>
+                <option>French</option>
+                <option>German</option>
+                <option>Chinese</option>
+                <option>Arabic</option>
+                <option>Hindi</option>
+              </select>
+              <svg class="absolute right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none"
+                fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </div>
+          </div>
+
+          <!-- Address -->
+          <div>
+            <label for="address" class="block text-gray-300 mb-2 font-medium">Address</label>
+            <textarea id="address" name="address" rows="4" placeholder="Enter your address..."
+              class="w-full bg-gray-700 text-white px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-400 resize-none"></textarea>
+          </div>
+
+          <!-- Upload Image -->
+          <div>
+            <label for="image-upload" class="block text-gray-300 mb-2 font-medium">Upload Image</label>
+            <div class="flex items-center gap-4">
+              <label
+                class="bg-gray-700 hover:bg-gray-600 text-white px-6 py-2.5 rounded-lg cursor-pointer transition-colors font-medium">
+                Choose File
+                <input id="image-upload" name="image-upload" type="file" accept="image/*" class="hidden" />
+              </label>
+              <span class="text-gray-400">No file chosen</span>
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="flex gap-4 pt-4">
+            <button type="reset"
+              class="bg-gray-700 hover:bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+              Profile Reset
+            </button>
+            <button type="submit"
+              class="bg-gradient-to-r from-pink-500 to-pink-600 hover:from-pink-600 hover:to-pink-700 text-white px-8 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl">
+              Profile Update
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
