@@ -4,13 +4,15 @@
       "id": "1",
       "name": "Abdullah",
       "email": "abdullah@example.com",
-      "password": "123456"
+      "password": "123456",
+      "role": "user"
     },
     {
       "id": "c001",
       "name": "Abdullah",
-      "email": "abdullahshokr9@gmail.com",
-      "password": "123456789"
+      "email": "abdullahshokr93@gmail.com",
+      "password": "123456789",
+      "role": "user"
     }
   ],
   "events": [
@@ -52,10 +54,22 @@
       "id": "1",
       "eventId": 1,
       "title": "Book Venue",
+      "description": "Book Venue",
       "assignedTo": "Ali",
       "priority": "High",
       "status": "In Progress",
-      "deadline": "2025-11-05"
+      "deadline": "2025-11-05",
+      "comments": [
+        1
+      ]
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "eventId": 1,
+      "user_id": 1,
+      "comment": "jhkghjgj"
     }
   ],
   "expenses": [
