@@ -25,10 +25,19 @@ export class AuthService {
         map((users) => {
           if (users.length > 0) {
             const user = users[0];
+
+            const safeUser = {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              role: user.role || 'user',
+            };
+
             localStorage.setItem(this.TOKEN_KEY, 'mock-token-' + user.id);
-            localStorage.setItem(this.USER_KEY, JSON.stringify(user));
-            localStorage.setItem(this.ROLE_KEY, user.role || 'user');
-            return user;
+            localStorage.setItem(this.USER_KEY, JSON.stringify(safeUser));
+            localStorage.setItem(this.ROLE_KEY, safeUser.role);
+
+            return safeUser;
           } else {
             throw new Error('Invalid credentials');
           }

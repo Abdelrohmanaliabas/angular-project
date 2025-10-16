@@ -10,8 +10,10 @@ export interface LayoutConfig {
   providedIn: 'root'
 })
 export class LayoutService {
+  private readonly THEME_KEY = 'app-theme';
+
   private _config: LayoutConfig = {
-    darkTheme: false,
+    darkTheme: localStorage.getItem(this.THEME_KEY) === 'dark',
     primaryColor: 'emerald'
   };
 
@@ -24,7 +26,6 @@ export class LayoutService {
   primaryColor = computed(() => this.layoutConfig().primaryColor);
 
   constructor() {
-    // Apply initial theme
     effect(() => {
       const config = this.layoutConfig();
       this.applyTheme(config);
@@ -33,10 +34,14 @@ export class LayoutService {
   }
 
   private applyTheme(config: LayoutConfig) {
+    const root = document.documentElement;
+
     if (config.darkTheme) {
-      document.documentElement.classList.add('app-dark');
+      root.classList.add('app-dark', 'dark');
+      localStorage.setItem(this.THEME_KEY, 'dark');
     } else {
-      document.documentElement.classList.remove('app-dark');
+      root.classList.remove('app-dark', 'dark');
+      localStorage.setItem(this.THEME_KEY, 'light');
     }
   }
 

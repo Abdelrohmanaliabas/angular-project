@@ -1,13 +1,19 @@
 <nav
-  class="flex items-center justify-between px-6 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm"
+  class="flex items-center justify-between px-6 py-3 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 shadow-sm relative z-40"
 >
-  <div class="flex items-center space-x-3">
-    <!-- Hamburger menu for mobile -->
-    <button class="md:hidden" (click)="toggleSidebar()">
-      <i class="pi pi-bars text-xl"></i>
+  <!-- Left Section -->
+  <div class="flex items-center space-x-4">
+    <!-- Sidebar Toggle (always visible) -->
+    <button
+      class="text-gray-700 dark:text-gray-300 hover:text-primary-500 transition"
+      (click)="toggleSidebar()"
+      title="Toggle sidebar"
+    >
+      <i class="pi pi-bars text-2xl"></i>
     </button>
 
-    <div class="relative">
+    <!-- Search -->
+    <div class="relative hidden sm:block">
       <i class="pi pi-search absolute left-3 top-2.5 text-gray-400"></i>
       <input
         type="text"
@@ -17,18 +23,115 @@
     </div>
   </div>
 
-  <div class="flex items-center space-x-5">
+  <!-- Right Section -->
+  <div class="flex items-center space-x-5 relative">
+    <!-- Theme Toggle -->
     <app-app-toggletheme></app-app-toggletheme>
-    <i class="pi pi-envelope text-xl text-gray-500 dark:text-gray-300"></i>
-    <i class="pi pi-bell text-xl text-gray-500 dark:text-gray-300"></i>
 
-    <div class="flex items-center space-x-2 cursor-pointer">
-      <img
-        src="https://randomuser.me/api/portraits/men/32.jpg"
-        class="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
-        alt="User avatar"
-      />
-      <span class="font-medium">John Smith</span>
+    <!-- Messages Dropdown -->
+    <div class="relative dropdown">
+      <button
+        (click)="toggleDropdown('messages')"
+        class="relative text-gray-600 dark:text-gray-300 hover:text-primary-500"
+      >
+        <i class="pi pi-envelope text-xl"></i>
+        <span
+          class="absolute -top-1 -right-2 bg-primary-500 text-white text-xs rounded-full px-1.5"
+          >2</span
+        >
+      </button>
+
+      <div
+        *ngIf="showMessages"
+        class="absolute right-0 mt-2 w-72 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2 animate-fade-in"
+      >
+        <h4 class="px-4 py-2 text-sm font-semibold border-b dark:border-gray-700">
+          Messages
+        </h4>
+        <div class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+          <p class="font-medium text-sm">Ali Hassan</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            Meeting at 3 PM confirmed.
+          </p>
+        </div>
+        <div class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+          <p class="font-medium text-sm">Sarah Omar</p>
+          <p class="text-xs text-gray-500 dark:text-gray-400">
+            Sent the final report.
+          </p>
+        </div>
+        <div class="text-center py-2 border-t dark:border-gray-700">
+          <a class="text-primary-600 dark:text-primary-400 text-sm cursor-pointer"
+            >View all</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifications Dropdown -->
+    <div class="relative dropdown">
+      <button
+        (click)="toggleDropdown('notifications')"
+        class="relative text-gray-600 dark:text-gray-300 hover:text-primary-500"
+      >
+        <i class="pi pi-bell text-xl"></i>
+        <span
+          class="absolute -top-1 -right-2 bg-yellow-400 text-white text-xs rounded-full px-1.5"
+          >3</span
+        >
+      </button>
+
+      <div
+        *ngIf="showNotifications"
+        class="absolute right-0 mt-2 w-72 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2 animate-fade-in"
+      >
+        <h4 class="px-4 py-2 text-sm font-semibold border-b dark:border-gray-700">
+          Notifications
+        </h4>
+        <div class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+          <p class="text-sm">New event added: Tech Conference</p>
+        </div>
+        <div class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+          <p class="text-sm">Your task deadline is tomorrow</p>
+        </div>
+        <div class="px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 cursor-pointer">
+          <p class="text-sm">Guest “Omar Ali” confirmed attendance</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Menu -->
+    <div class="relative dropdown">
+      <div
+        class="flex items-center space-x-2 cursor-pointer select-none"
+        (click)="toggleDropdown('user')"
+      >
+        <img
+          src="https://randomuser.me/api/portraits/men/32.jpg"
+          class="w-8 h-8 rounded-full border border-gray-300 dark:border-gray-600"
+          alt="User"
+        />
+        <span class="font-medium">John Smith</span>
+        <i class="pi pi-angle-down text-xs"></i>
+      </div>
+
+      <div
+        *ngIf="showUserMenu"
+        class="absolute right-0 mt-2 w-48 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-lg py-2 animate-fade-in"
+      >
+        <a
+          routerLink="/dashboard/profile"
+          class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm"
+          >Profile</a
+        >
+        <hr class="border-gray-200 dark:border-gray-700" />
+        <button
+          (click)="logout()"
+          class="w-full text-left px-4 py-2 text-sm text-red-500 hover:bg-gray-100 dark:hover:bg-gray-700"
+        >
+          Logout
+        </button>
+      </div>
     </div>
   </div>
 </nav>
