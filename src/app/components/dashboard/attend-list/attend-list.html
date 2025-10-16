@@ -1,1 +1,124 @@
-<p>attend-list works!</p>
+<div class="min-h-screen bg-gray-800 flex flex-col">
+
+  <div class="flex-grow overflow-x-auto">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 border-b-1">
+    <h2 class="text-2xl font-semibold text-white ">Event List</h2>
+    <button class="px-4 py-2 rounded-lg bg-pink-600 text-sm text-gray-300 hover:bg-gray-700 transition">
+      Create Event
+    </button>
+  </div>
+    <div class="max-w-7xl mx-auto bg-gray-800 rounded-xl shadow-2xl overflow-hidden">
+
+      <!--Header -->
+      <div class="bg-gray-900 px-6 py-4 hidden md:grid grid-cols-12 gap-4 text-white font-semibold text-sm">
+        <div class="col-span-1">ID No</div>
+        <div class="col-span-2">Name</div>
+        <div class="col-span-4">Seminar</div>
+        <div class="col-span-2">Time</div>
+        <div class="col-span-1">Date</div>
+        <div class="col-span-1">Status</div>
+        <div class="col-span-1 text-center">Action</div>
+      </div>
+
+      <!-- Body -->
+      <div class="divide-y divide-gray-700 text-sm text-gray-300">
+
+        <!-- Row 1 -->
+        <div class="px-6 py-4 hover:bg-gray-700 transition-colors duration-200">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+            <div class="md:col-span-1 font-medium">#3265</div>
+            <div class="md:col-span-2 flex items-center gap-3">
+              <img src="assets/images/img.jpg" alt="Harry Porter" class="w-10 h-10 rounded-full object-cover border-2 border-gray-600">
+              <span class="text-white font-medium">Harry Porter</span>
+            </div>
+            <div class="md:col-span-4">Digital Product Design Seminar - 2023</div>
+            <div class="md:col-span-2">9:00am - 5:00pm</div>
+            <div class="md:col-span-1">25 Jun 2023</div>
+            <div class="md:col-span-1 font-semibold text-green-500">Approved</div>
+            <div class="md:col-span-1 flex justify-center gap-4 text-white text-lg">
+              <i class="fa-solid fa-pen-to-square cursor-pointer hover:text-yellow-400"></i>
+              <i class="fa-solid fa-trash cursor-pointer hover:text-red-500"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 2 -->
+        <div class="px-6 py-4 hover:bg-gray-700 transition-colors duration-200">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+            <div class="md:col-span-1 font-medium">#6259</div>
+            <div class="md:col-span-2 flex items-center gap-3">
+              <img src="assets/images/img.jpg" alt="Lary Go" class="w-10 h-10 rounded-full object-cover border-2 border-gray-600">
+              <span class="text-white font-medium">Lary Go</span>
+            </div>
+            <div class="md:col-span-4">Graphic Design Innovation Seminar - 2023</div>
+            <div class="md:col-span-2">9:00am - 5:00pm</div>
+            <div class="md:col-span-1">28 Jun 2023</div>
+            <div class="md:col-span-1 font-semibold text-orange-500">Pending</div>
+            <div class="md:col-span-1 flex justify-center gap-4 text-white text-lg">
+              <i class="fa-solid fa-pen-to-square cursor-pointer hover:text-yellow-400"></i>
+              <i class="fa-solid fa-trash cursor-pointer hover:text-red-500"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 3 -->
+        <div class="px-6 py-4 hover:bg-gray-700 transition-colors duration-200">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+            <div class="md:col-span-1 font-medium">#6259</div>
+            <div class="md:col-span-2 flex items-center gap-3">
+              <img src="assets/images/img.jpg" alt="Lary Go" class="w-10 h-10 rounded-full object-cover border-2 border-gray-600">
+              <span class="text-white font-medium">Lary Go</span>
+            </div>
+            <div class="md:col-span-4">Graphic Design Innovation Seminar - 2023</div>
+            <div class="md:col-span-2">9:00am - 5:00pm</div>
+            <div class="md:col-span-1">28 Jun 2023</div>
+            <div class="md:col-span-1 font-semibold text-blue-500">Paid</div>
+            <div class="md:col-span-1 flex justify-center gap-4 text-white text-lg">
+              <i class="fa-solid fa-pen-to-square cursor-pointer hover:text-yellow-400"></i>
+              <i class="fa-solid fa-trash cursor-pointer hover:text-red-500"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Row 4 -->
+        <div class="px-6 py-4 hover:bg-gray-700 transition-colors duration-200">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+            <div class="md:col-span-1 font-medium">#6259</div>
+            <div class="md:col-span-2 flex items-center gap-3">
+              <img src="assets/images/img.jpg" alt="Lary Go" class="w-10 h-10 rounded-full object-cover border-2 border-gray-600">
+              <span class="text-white font-medium">Lary Go</span>
+            </div>
+            <div class="md:col-span-4">Graphic Design Innovation Seminar - 2023</div>
+            <div class="md:col-span-2">9:00am - 5:00pm</div>
+            <div class="md:col-span-1">28 Jun 2023</div>
+            <div class="md:col-span-1 font-semibold text-red-500">Unpaid</div>
+            <div class="md:col-span-1 flex justify-center gap-4 text-white text-lg">
+              <i class="fa-solid fa-pen-to-square cursor-pointer hover:text-yellow-400"></i>
+              <i class="fa-solid fa-trash cursor-pointer hover:text-red-500"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- Pagination -->
+  <div class="mt-6 flex flex-wrap justify-end gap-2">
+    <button class="rounded-full border border-slate-300 py-2 px-3 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition">
+      Prev
+    </button>
+    <button class="min-w-9 rounded-full bg-slate-800 py-2 px-4 text-sm text-white shadow-md hover:bg-slate-700 transition">
+      1
+    </button>
+    <button class="min-w-9 rounded-full border border-slate-300 py-2 px-4 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition">
+      2
+    </button>
+    <button class="min-w-9 rounded-full border border-slate-300 py-2 px-4 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition">
+      3
+    </button>
+    <button class="rounded-full border border-slate-300 py-2 px-3 text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition">
+      Next
+    </button>
+  </div>
+  </div>
+
+</div>

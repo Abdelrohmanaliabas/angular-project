@@ -1,98 +1,271 @@
-<div class="container mx-auto px-4 bg-amber-300 rounded-lg py-5">
+<!-- <div class="container mx-auto px-4 bg-amber-300 rounded-lg py-5">
   <h2 class="pb-5 text-3xl border-b-1">Event Information</h2>
 
-  <form class="max-w-sm my-5">
-    <div class="mb-5">
-      <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Title</label>
-      <input type="text" id="title"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        placeholder="name@flowbite.com" required />
-    </div>
-    <div class="mb-5">
-      <label for="desc" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Details</label>
-      <textarea name="desc" id="desc"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required></textarea>
-    </div>
-    <div class="grid grid-cols-2 gap-2">
-      <div class="mb-5 col-span-1">
-        <label for="date" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Date</label>
-        <input type="date" id="date"
+  <form class= "my-5 grid grid-cols-2 gap-3">
+    <div class="col-span-2 md:col-span-1">
+      <div class="mb-5">
+        <label for="title" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Event Title</label>
+        <input type="text" id="title"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="name@flowbite.com" required />
+      </div>
+      <div class="mb-5">
+        <label for="desc" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Event Details</label>
+        <input name="desc" id="desc"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          required/>
+      </div>
+      <div class="grid grid-cols-2 gap-2">
+        <div class="mb-5 col-span-1">
+          <label for="date" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Date</label>
+          <input type="date" id="date"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required />
+        </div>
+        <div class="mb-5 col-span-1">
+          <label for="time" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Time</label>
+          <input type="time" id="time"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required />
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <label for="address" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Venue /
+          Address</label>
+        <input type="text" id="address"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required />
       </div>
-      <div class="mb-5 col-span-1">
-        <label for="time" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Time</label>
-        <input type="time" id="time"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          required />
+      <div class="grid grid-cols-2 gap-2">
+        <div class="mb-5 col-span-1">
+          <label for="type" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Event Type</label>
+          <input type="text" id="type"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required />
+        </div>
+        <div class="mb-5 col-span-1">
+          <label for="seats" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Total Seats</label>
+          <input type="number" id="seats"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required />
+        </div>
       </div>
     </div>
 
-    <div class="mb-5">
-      <label for="address" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Venue / Address</label>
-      <input type="text" id="address"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required />
-    </div>
-    <div class="grid grid-cols-2 gap-2">
-      <div class="mb-5 col-span-1">
-        <label for="type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Type</label>
-        <input type="text" id="type"
+    <div class="col-span-2 md:col-span-1  lg:pl-3 lg:border-l lg:border-b-black">
+      <div class="grid grid-cols-2 gap-2">
+        <div class="mb-5 col-span-1">
+          <label for="price" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Ticket Price</label>
+          <input type="text" id="price"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required />
+        </div>
+        <div class="mb-5 col-span-1">
+          <label for="status" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Event Status</label>
+          <input type="text" id="status"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            required />
+        </div>
+      </div>
+
+      <div class="mb-5">
+        <label for="speaker" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Speaker Name</label>
+        <input type="text" id="speaker"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required />
       </div>
-      <div class="mb-5 col-span-1">
-        <label for="seats" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Seats</label>
-        <input type="number" id="seats"
+      <div class="mb-5">
+        <label for="password" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Email</label>
+        <input type="password" id="password"
           class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required />
       </div>
+      <div class="mb-5">
+        <label for="phone" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Phone Number</label>
+        <input type="text" id="phone"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          required />
+      </div>
+      <div class="mb-5">
+        <label for="image" class="block mb-2 text-lg font-medium text-gray-900 dark:text-white">Upload Image</label>
+        <input type="file" id="image"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          required />
+      </div>
+      <button type="submit"
+      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+      Create Event
+      </button>
     </div>
 
-    <div class="grid grid-cols-2 gap-2">
-      <div class="mb-5 col-span-1">
-      <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ticket Price</label>
-      <input type="text" id="price"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required />
-    </div>
-    <div class="mb-5 col-span-1">
-      <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Event Status</label>
-      <input type="text" id="status"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required />
-    </div>
-    </div>
-
-    <div class="mb-5">
-      <label for="speaker" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Speaker Name</label>
-      <input type="text" id="speaker"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required />
-    </div>
-    <div class="mb-5">
-      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-      <input type="password" id="password"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required />
-    </div>
-    <div class="mb-5">
-      <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
-      <input type="text" id="phone"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required />
-    </div>
-    <div class="mb-5">
-      <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload Image</label>
-      <input type="file" id="image"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        required />
-    </div>
-
-
-    <button type="submit"
-      class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create
-      Event</button>
   </form>
-</div>
+</div> -->
+
+
+<form action="#" method="POST" enctype="multipart/form-data" class="mx-auto bg-gray-800 rounded-xl shadow-2xl">
+  <h2 class="text-2xl font-bold px-6 pt-6 border-b-1">Event Information</h2>
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-0 lg:gap-0 ">
+
+    <!-- Event Section -->
+    <div class="p-8 space-y-6 border-b lg:border-b-0 lg:border-r border-gray-700">
+
+      <!-- Event Title -->
+      <div>
+        <label for="eventTitle" class="block font-semibold mb-2">Event Title</label>
+        <input type="text" id="eventTitle" name="eventTitle" required placeholder="Enter event title"
+          class="w-full bg-gray-700 px-4 py-3 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+      </div>
+
+      <!-- Event Details -->
+      <div>
+        <label for="eventDetails" class="block font-semibold mb-2">Event Details</label>
+        <textarea id="eventDetails" name="eventDetails" rows="4" required placeholder="Enter event details"
+          class="w-full bg-gray-700 px-4 py-3 rounded-lg placeholder-gray-500 resize-none focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
+      </div>
+
+
+      <!-- Event Images -->
+      <div>
+        <label class="block font-semibold mb-2">Event Images </label>
+        <div class="grid grid-cols-3 gap-4">
+          <!-- Image 1 -->
+          <label
+            class="bg-gray-700 hover:bg-gray-600 flex items-center justify-center rounded-lg cursor-pointer relative text-center text-sm text-gray-400 w-full aspect-square">
+            Upload
+            <input type="file" name="eventImage1" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" />
+          </label>
+
+          <!-- Image 2 -->
+          <label
+            class="bg-gray-700 hover:bg-gray-600 flex items-center justify-center rounded-lg cursor-pointer relative text-center text-sm text-gray-400 w-full aspect-square">
+            Upload
+            <input type="file" name="eventImage2" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" />
+          </label>
+
+          <!-- Image 3 -->
+          <label
+            class="bg-gray-700 hover:bg-gray-600 flex items-center justify-center rounded-lg cursor-pointer relative text-center text-sm text-gray-400 w-full aspect-square">
+            Upload
+            <input type="file" name="eventImage3" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Date & Time -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label for="eventDate" class="block font-semibold mb-2">Event Date</label>
+          <input type="date" id="eventDate" name="eventDate" required
+            class="w-full bg-gray-700 px-4 py-3 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+        </div>
+        <div>
+          <label for="eventTime" class="block font-semibold mb-2">Event Time</label>
+          <input type="time" id="eventTime" name="eventTime" required
+            class="w-full bg-gray-700 px-4 py-3 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div>
+        <label for="eventAddress" class="block font-semibold mb-2">Venue / Address</label>
+        <textarea id="eventAddress" name="eventAddress" rows="2" required placeholder="Enter venue address"
+          class="w-full bg-gray-700 px-4 py-3 rounded-lg placeholder-gray-500 resize-none focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Event Type -->
+        <div>
+          <label for="eventType" class="block font-semibold mb-2">Event Type</label>
+          <select id="eventType" name="eventType" required
+            class="w-full bg-gray-700 px-4 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500">
+            <option value="" disabled selected>Select type</option>
+            <option value="conference">Free</option>
+            <option value="workshop">Paid</option>
+          </select>
+        </div>
+
+        <!-- Event Status -->
+        <div>
+          <label for="eventStatus" class="block font-semibold mb-2">Event Status</label>
+          <select id="eventStatus" name="eventStatus" required
+            class="w-full bg-gray-700 px-4 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500">
+            <option value="" disabled selected>Select status</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="tentative">Waiting</option>
+            <option value="cancelled">Confused</option>
+          </select>
+        </div>
+
+        <!-- Total Seat -->
+        <div>
+          <label for="totalSeat" class="block font-semibold mb-2">Total Seat</label>
+          <input type="number" id="totalSeat" name="totalSeat" required value="1250"
+            class="w-full bg-gray-700 px-4 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+        </div>
+
+        <!-- Ticket Price -->
+        <div>
+          <label for="ticketPrice" class="block font-semibold mb-2">Ticket Price</label>
+          <div class="relative">
+            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">$</span>
+            <input type="number" step="0.01" id="ticketPrice" name="ticketPrice" required value="25.00"
+              class="w-full bg-gray-700 px-10 py-3 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Speaker Section -->
+    <div class="p-8 space-y-6">
+      <!-- Speaker Name -->
+      <div>
+        <label for="speakerName" class="block font-semibold mb-2">Name</label>
+        <input type="text" id="speakerName" name="speakerName" required placeholder="Enter speaker name"
+          class="w-full bg-gray-700 px-4 py-3 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label for="speakerEmail" class="block font-semibold mb-2">Email</label>
+        <input type="email" id="speakerEmail" name="speakerEmail" required placeholder="Enter email"
+          class="w-full bg-gray-700 px-4 py-3 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+      </div>
+
+      <!-- Phone -->
+      <div>
+        <label for="speakerPhone" class="block font-semibold mb-2">Phone</label>
+        <input type="tel" id="speakerPhone" name="speakerPhone" required placeholder="Enter phone number"
+          class="w-full bg-gray-700 px-4 py-3 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+      </div>
+
+      <!-- Designation -->
+      <div>
+        <label for="speakerDesignation" class="block font-semibold mb-2">Designation</label>
+        <input type="text" id="speakerDesignation" name="speakerDesignation" required placeholder="Enter designation"
+          class="w-full bg-gray-700 px-4 py-3 rounded-lg placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+      </div>
+
+      <!-- Speaker Image -->
+      <div>
+        <label for="speakerImage" class="block font-semibold mb-2">Upload Image (200x200px)</label>
+        <input type="file" id="speakerImage" name="speakerImage" accept="image/*" required
+          class="block w-full text-white bg-gray-700 file:bg-pink-600 file:hover:bg-pink-700 file:text-white file:font-semibold file:rounded-lg file:px-4 file:py-2 file:border-0 focus:outline-none focus:ring-2 focus:ring-pink-500" />
+      </div>
+
+      <!-- Submit Button -->
+      <div class="pt-4">
+        <button type="submit"
+          class="w-full bg-pink-600 hover:bg-pink-700 px-6 py-3 rounded-lg font-semibold text-white transition-all">
+          Add new speaker
+        </button>
+      </div>
+      <div class="pt-4">
+        <button type="submit"
+          class="w-full bg-pink-600 hover:bg-pink-700 px-6 py-3 rounded-lg font-semibold text-white transition-all">
+          Submit Event
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
