@@ -11,6 +11,12 @@
       "name": "Abdullah",
       "email": "abdullahshokr9@gmail.com",
       "password": "123456789"
+    },
+    {
+      "id": "5930",
+      "name": "alaa amr",
+      "email": "alaaamr153@gmail.com",
+      "password": "123456789"
     }
   ],
   "events": [
