@@ -10,14 +10,13 @@ import {CommonModule} from "@angular/common";
   templateUrl: './app.floatingconfigurator.html'
 })
 export class AppFloatingconfigurator {
-   LayoutService = inject(LayoutService);
+  LayoutService = inject(LayoutService);
 
-    float = input<boolean>(true);
+  float = input<boolean>(true);
 
-    isDarkTheme = computed(() => this.LayoutService.layoutConfig().darkTheme);
+  isDarkTheme = computed(() => this.LayoutService.layoutConfig().darkTheme);
 
-    toggleDarkMode() {
-        this.LayoutService.layoutConfig.update((state) => ({ ...state, darkTheme: !state.darkTheme }));
-    }
-
+  toggleDarkMode() {
+      this.LayoutService.layoutConfig.update((state) => ({ ...state, darkTheme: !state.darkTheme }));
+  }
 }

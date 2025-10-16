@@ -13,6 +13,13 @@
       "email": "abdullahshokr93@gmail.com",
       "password": "123456789",
       "role": "user"
+    },
+    {
+      "id": "d6b8",
+      "name": "Abdullah Shokr",
+      "email": "abdullahshokr3@gmail.com",
+      "password": "123456789",
+      "role": "user"
     }
   ],
   "events": [

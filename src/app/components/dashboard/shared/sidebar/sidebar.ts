@@ -1,15 +1,18 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, Input, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
-
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule,RouterModule],
+  standalone: true,
+  imports: [CommonModule, RouterModule],
   templateUrl: './sidebar.html',
-  styleUrl: './sidebar.css'
+  styleUrls: ['./sidebar.css']
 })
 export class Sidebar {
+  @Input() collapsed = false;
+  isMobile = false;
+
   navLinks = [
     { label: 'Dashboard', icon: 'pi pi-home', path: 'home' },
     { label: 'Schedule List', icon: 'pi pi-calendar', path: 'schedule' },
@@ -20,9 +23,6 @@ export class Sidebar {
     { label: 'Venue', icon: 'pi pi-map-marker', path: 'venue' },
     { label: 'Profile', icon: 'pi pi-user-edit', path: 'profile' },
   ];
-  collapsed = false;
-  isMobile = false;
-  darkMode = localStorage.getItem('theme') === 'dark';
 
   @HostListener('window:resize')
   onResize() {
@@ -31,21 +31,5 @@ export class Sidebar {
 
   ngOnInit() {
     this.onResize();
-    if (this.darkMode) document.documentElement.classList.add('dark');
-  }
-
-  toggleSidebar() {
-    this.collapsed = !this.collapsed;
-  }
-
-  toggleDarkMode() {
-    this.darkMode = !this.darkMode;
-    if (this.darkMode) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
   }
 }

@@ -21,10 +21,12 @@ import { MainLayout } from './components/landing/main-layout';
 // Guards
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
+import { GuestGuard } from './core/guards/guest.guard';
+
 
 export const routes: Routes = [
-  { path: 'login', component: Auth },
-  { path: 'register', component: Register },
+  { path: 'login', component: Auth, canActivate: [GuestGuard] },
+  { path: 'register', component: Register, canActivate: [GuestGuard] },
   {
     path: 'dashboard',
     component: Dashboard,

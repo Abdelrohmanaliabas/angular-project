@@ -6,8 +6,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-app-toggletheme',
   imports: [CommonModule, ButtonModule],
-  templateUrl: './app-toggletheme.html',
-  styleUrl: './app-toggletheme.css'
+  templateUrl: './app-toggletheme.html'
 })
 export class AppToggletheme {
   layoutService = inject(LayoutService);
