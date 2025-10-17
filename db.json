@@ -45,6 +45,29 @@
       "feedback": [
         1
       ]
+    },
+    {
+      "id": "2",
+      "name": "Design Meetup",
+      "description": "UI/UX best practices",
+      "category": "Design",
+      "location": "Jeddah",
+      "startDate": "2025-11-15",
+      "endDate": "2025-11-20",
+      "createdBy": 2,
+      "status": "Completed",
+      "guests": [
+        1
+      ],
+      "tasks": [
+        1
+      ],
+      "expenses": [
+        1
+      ],
+      "feedback": [
+        1
+      ]
     }
   ],
   "guests": [
@@ -52,6 +75,90 @@
       "id": "1",
       "name": "Omar Ali",
       "email": "omar@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "2",
+      "name": "MOhamed Ali",
+      "email": "MOhamed@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "3",
+      "name": "Abdullah",
+      "email": "Abdullah@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "4",
+      "name": "MOhamed Ali",
+      "email": "MOhamed@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "5",
+      "name": "Abdullah",
+      "email": "Abdullah@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "6",
+      "name": "MOhamed Ali",
+      "email": "MOhamed@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "7",
+      "name": "Abdullah",
+      "email": "Abdullah@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "8",
+      "name": "Abdullah",
+      "email": "Abdullah@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "9",
+      "name": "Abdullah",
+      "email": "Abdullah@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "10",
+      "name": "Abdullah",
+      "email": "Abdullah@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "11",
+      "name": "Yasser",
+      "email": "Yasser@gmail.com",
+      "status": "Confirmed",
+      "eventId": 1
+    },
+    {
+      "id": "11",
+      "name": "Yasser",
+      "email": "Yasser@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "11",
+      "name": "Yasser",
+      "email": "Yasser@gmail.com",
       "status": "Invited",
       "eventId": 1
     }
