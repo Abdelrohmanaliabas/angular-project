@@ -1,0 +1,14 @@
+:host ::ng-deep .p-progressbar {
+  background-color: #374151;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+:host ::ng-deep .p-progressbar-value {
+  background-color: #22c55e !important;
+  transition: width 0.4s ease;
+}
+
+:host-context(.dark) ::ng-deep .p-progressbar {
+  background-color: #1f2937;
+}

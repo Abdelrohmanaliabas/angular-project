@@ -6,6 +6,7 @@ import { Main } from './components/dashboard/main/main';
 import { Schedule as DashboardSchedule } from './components/dashboard/schedule/schedule';
 import { SpeakerList as DashboardSpeakers } from './components/dashboard/speaker-list/speaker-list';
 import { AttendList as DashboardAttendants } from './components/dashboard/attend-list/attend-list';
+import { TasksList as DashboardTaskList } from './components/dashboard/tasks-list/tasks-list';
 import { Calender as DashboardCalendar } from './components/dashboard/calender/calender';
 import { Profile as DashboardProfile } from './components/dashboard/profile/profile';
 
@@ -37,6 +38,7 @@ export const routes: Routes = [
       { path: 'schedule', component: DashboardSchedule },
       { path: 'speakers', component: DashboardSpeakers },
       { path: 'attendants', component: DashboardAttendants },
+      { path: 'tasks', component: DashboardTaskList },
       { path: 'calendar', component: DashboardCalendar },
       { path: 'profile', component: DashboardProfile },
     ],
