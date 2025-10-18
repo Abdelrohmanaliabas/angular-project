@@ -19,6 +19,20 @@ export class Navbar {
 
   constructor(private authService: AuthService, private router: Router) {}
 
+  user: { name: string; avatar: string } = { name: '', avatar: '' };
+
+  ngOnInit() {
+    const storedUser = localStorage.getItem('user_data');
+    if (storedUser) {
+      this.user = JSON.parse(storedUser);
+    } else {
+      this.user = {
+        name: 'User',
+        avatar: 'https://randomuser.me/api/portraits/men/32.jpg',
+      };
+    }
+  }
+
   toggleSidebar() {
     this.toggleSidebarEvent.emit();
   }
