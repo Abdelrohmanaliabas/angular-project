@@ -18,6 +18,7 @@ import { Schedule } from './components/landing/schedule/schedule';
 import { Blog } from './components/landing/blog/blog';
 import { GetTicket } from './components/landing/get-ticket/get-ticket';
 import { MainLayout } from './components/landing/main-layout';
+import { EventExpenses  } from './components/dashboard/events/event-expenses/event-expenses';
 
 // Guards
 import { authGuard } from './core/guards/auth.guard';
@@ -41,6 +42,7 @@ export const routes: Routes = [
       { path: 'tasks', component: DashboardTaskList },
       { path: 'calendar', component: DashboardCalendar },
       { path: 'profile', component: DashboardProfile },
+      {path: 'events-expenses',component: EventExpenses},
     ],
   },
   {

@@ -1,0 +1,30 @@
+/* ✨ خط أزرق مضيء متحرك داخل الخلفية */
+.blue-light-line {
+  position: absolute;
+  top: 0;
+  left: -60%;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(120deg,
+      transparent,
+      rgba(0, 153, 255, 0.6),
+      rgba(0, 153, 255, 0.9),
+      transparent);
+  filter: blur(60px);
+  animation: moveBlueLine 8s ease-in-out infinite;
+  opacity: 0.8;
+}
+
+@keyframes moveBlueLine {
+  0% {
+    left: -60%;
+  }
+
+  50% {
+    left: 100%;
+  }
+
+  100% {
+    left: -60%;
+  }
+}
