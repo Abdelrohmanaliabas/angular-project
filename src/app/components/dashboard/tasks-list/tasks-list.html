@@ -1,0 +1,164 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
+
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 p-4 text-gray-900 dark:text-gray-100">
+  <div class="max-w-6xl mx-auto space-y-8">
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <h2 class="text-2xl font-semibold">Task Management</h2>
+
+      <div class="flex items-center gap-3">
+        <!-- Event Selector -->
+        <select
+          [(ngModel)]="selectedEventId"
+          (change)="loadTasks()"
+          class="px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 text-sm focus:ring focus:ring-primary-500 transition"
+        >
+          <option [value]="null">Select Event</option>
+          <option *ngFor="let ev of events" [value]="ev.id">{{ ev.name }}</option>
+        </select>
+
+        <button
+          pButton
+          label="New Task"
+          icon="pi pi-plus"
+          class="p-button-sm p-button-success"
+          (click)="openCreateDialog()"
+          [disabled]="!selectedEventId"
+        ></button>
+      </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div *ngIf="selectedEventId && tasks.length" class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 shadow-sm">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-sm text-gray-600 dark:text-gray-300">
+          Progress
+        </span>
+        <span class="text-sm font-semibold text-gray-800 dark:text-gray-200">
+          {{ progress }}% ({{ completedCount }} / {{ totalCount }} tasks)
+        </span>
+      </div>
+      <p-progressBar
+        [value]="progress"
+        [showValue]="false"
+        [style]="{ height: '10px' }"
+        class="rounded-full overflow-hidden"
+      ></p-progressBar>
+    </div>
+
+    <!-- Task List -->
+    <div *ngIf="tasks.length; else noTasks">
+      <div
+        *ngFor="let t of tasks"
+        class="bg-white dark:bg-gray-800 rounded-lg p-4 shadow flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 border border-gray-200 dark:border-gray-700 hover:shadow-md transition"
+      >
+        <div>
+          <h3 class="font-semibold text-base mb-1">{{ t.title }}</h3>
+          <p class="text-sm text-gray-600 dark:text-gray-400 mb-2">{{ t.description }}</p>
+          <div class="text-xs flex flex-wrap gap-2">
+            <span
+              class="px-2 py-1 rounded-full font-medium"
+              [ngClass]="{
+                'bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-200': t.status === 'Completed',
+                'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200': t.status === 'In Progress',
+                'bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300': t.status === 'Not Started'
+              }"
+              >{{ t.status }}</span
+            >
+
+            <span
+              class="px-2 py-1 rounded-full font-medium"
+              [ngClass]="{
+                'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-200': t.priority === 'Low',
+                'bg-yellow-100 text-yellow-700 dark:bg-yellow-900 dark:text-yellow-200': t.priority === 'Medium',
+                'bg-orange-100 text-orange-700 dark:bg-orange-900 dark:text-orange-200': t.priority === 'High',
+                'bg-red-100 text-red-700 dark:bg-red-900 dark:text-red-200': t.priority === 'Critical'
+              }"
+              >{{ t.priority }}</span
+            >
+
+            <span class="text-gray-500 dark:text-gray-400">🗓 {{ t.deadline }}</span>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="flex gap-2">
+          <button
+            pButton
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-sm p-button-warning"
+            (click)="openEditDialog(t)"
+            title="Edit Task"
+          ></button>
+          <button
+            pButton
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-sm p-button-danger"
+            (click)="deleteTask(t)"
+            title="Delete Task"
+          ></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Empty -->
+    <ng-template #noTasks>
+      <div
+        *ngIf="selectedEventId"
+        class="text-center text-gray-500 dark:text-gray-400 py-8 border border-dashed border-gray-300 dark:border-gray-700 rounded-lg"
+      >
+        No tasks found for this event.
+      </div>
+    </ng-template>
+  </div>
+</div>
+
+<!-- Dialog (Create/Edit Task) -->
+<p-dialog [(visible)]="showDialog" [modal]="true" header="{{ dialogMode === 'edit' ? 'Edit Task' : 'Create Task' }}" [style]="{ width: '420px' }">
+  <div class="space-y-4">
+    <input
+      [(ngModel)]="newTask.title"
+      placeholder="Task Title"
+      class="w-full px-3 py-2 border rounded bg-gray-100 dark:bg-gray-800 dark:border-gray-600"
+    />
+
+    <textarea
+      [(ngModel)]="newTask.description"
+      placeholder="Description"
+      class="w-full px-3 py-2 border rounded bg-gray-100 dark:bg-gray-800 dark:border-gray-600"
+    ></textarea>
+
+    <div class="flex gap-2">
+      <select
+        [(ngModel)]="newTask.priority"
+        class="flex-1 px-3 py-2 border rounded bg-gray-100 dark:bg-gray-800 dark:border-gray-600"
+      >
+        <option>Low</option>
+        <option>Medium</option>
+        <option>High</option>
+        <option>Critical</option>
+      </select>
+
+      <select
+        [(ngModel)]="newTask.status"
+        class="flex-1 px-3 py-2 border rounded bg-gray-100 dark:bg-gray-800 dark:border-gray-600"
+      >
+        <option>Not Started</option>
+        <option>In Progress</option>
+        <option>Completed</option>
+      </select>
+    </div>
+
+    <input
+      type="date"
+      [(ngModel)]="newTask.deadline"
+      class="w-full px-3 py-2 border rounded bg-gray-100 dark:bg-gray-800 dark:border-gray-600"
+    />
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button pButton label="Cancel" class="p-button-text" (click)="showDialog=false"></button>
+    <button pButton label="Save" icon="pi pi-check" (click)="saveTask()"></button>
+  </ng-template>
+</p-dialog>

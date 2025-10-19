@@ -19,6 +19,8 @@ export class Sidebar {
     { label: 'Speaker List', icon: 'pi pi-user', path: 'speakers' },
     { label: 'Attendant List', icon: 'pi pi-users', path: 'attendants' },
     { label: 'Upcoming Event', icon: 'pi pi-calendar-plus', path: 'event-list' },
+    { label: 'Tasks List', icon: 'pi pi-calendar', path: 'tasks' },
+    { label: 'Upcoming Event', icon: 'pi pi-calendar-plus', path: 'upcoming' },
     { label: 'Calendar', icon: 'pi pi-calendar-times', path: 'calendar' },
     { label: 'Venue', icon: 'pi pi-map-marker', path: 'venue' },
     { label: 'Profile', icon: 'pi pi-user-edit', path: 'profile' },

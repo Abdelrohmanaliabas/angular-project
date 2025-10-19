@@ -1,0 +1,61 @@
+<section
+  class="py-16 bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white min-h-screen flex justify-center items-center transition-colors duration-500">
+  <div class="container mx-auto px-6 max-w-4xl">
+    <h2 class="text-3xl font-bold mb-6 text-center">💰 Event Expenses</h2>
+    <p class="text-gray-600 dark:text-gray-400 text-center mb-10">
+      Manage and track all your event expenses easily.
+    </p>
+
+    <!-- Add Expense Form -->
+    <form class="grid grid-cols-1 md:grid-cols-4 gap-3 mb-8" (ngSubmit)="addExpense()">
+      <input type="text" placeholder="Name" [(ngModel)]="newExpense.name" name="name"
+        class="w-full p-3 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500 transition" />
+
+      <input type="number" placeholder="Amount" [(ngModel)]="newExpense.amount" name="amount"
+        class="w-full p-3 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500 transition" />
+
+      <select [(ngModel)]="newExpense.category" name="category"
+        class="w-full p-3 rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-pink-500 transition">
+        <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+      </select>
+
+      <button type="submit"
+        class="bg-gradient-to-r from-pink-500 to-red-500 text-white font-semibold py-3 rounded-lg hover:shadow-lg transition">
+        Add
+      </button>
+    </form>
+
+    <!-- Expense Table -->
+    <div class="overflow-x-auto">
+      <table
+        class="w-full text-sm border border-gray-300 dark:border-gray-700 rounded-lg overflow-hidden transition-colors duration-300">
+        <thead class="bg-gray-200 dark:bg-gray-800 text-gray-800 dark:text-gray-300">
+          <tr>
+            <th class="p-3 text-left">Name</th>
+            <th class="p-3 text-left">Category</th>
+            <th class="p-3 text-right">Amount</th>
+            <th class="p-3 text-right">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let e of expenses"
+            class="border-t border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800 transition">
+            <td class="p-3">{{ e.name }}</td>
+            <td class="p-3">{{ e.category }}</td>
+            <td class="p-3 text-right">{{ e.amount | currency }}</td>
+            <td class="p-3 text-right">
+              <button class="text-red-500 hover:text-red-400 transition" (click)="deleteExpense(e.id)">
+                🗑️
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Total -->
+    <div class="mt-6 text-right text-xl font-bold text-pink-500 dark:text-pink-400">
+      Total: {{ total | currency }}
+    </div>
+  </div>
+</section>

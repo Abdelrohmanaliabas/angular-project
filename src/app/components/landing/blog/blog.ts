@@ -1,37 +1,54 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-interface BlogPost {
+import { EventsService, EventWithRelations } from '../../../core/services/events.service';
+import { map, catchError } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+
+interface BlogPostVM {
   title: string;
-  date: string;
+  date: string;     // formatted "dd MMM, yyyy"
   comments: number;
   image: string;
 }
+
 @Component({
   selector: 'app-blog',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './blog.html',
-  styleUrl: './blog.css'
+  styleUrls: ['./blog.css'] // خليها plural
 })
 export class Blog {
-  blogPosts: BlogPost[] = [
-    {
-      title: "How To Get Started Learning JavaScript The Right Way",
-      date: "15 Nov, 2023",
-      comments: 0,
-      image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600"
-    },
-    {
-      title: "How To Get Started Learning JavaScript The Right Way",
-      date: "20 Sep, 2023",
-      comments: 0,
-      image: "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600"
-    },
-    {
-      title: "How To Get Started Learning JavaScript The Right Way",
-      date: "25 Sep, 2023",
-      comments: 3,
-      image: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=600"
-    }
-  ];
 
+  posts$!: Observable<BlogPostVM[]>;
+
+  constructor(private events: EventsService) {
+    this.posts$ = this.events.listWithRelations().pipe(
+      map((items: EventWithRelations[]) => {
+        return items
+          // فرز حسب startDate تنازليًا
+          .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime())
+          // تحويل لكل عنصر لشكل واجهة العرض
+          .map(ev => ({
+            title: ev.name,
+            date: this.formatDate(ev.startDate),
+            comments: ev.comments?.length ?? 0,
+            image: ev.eventImage ?? 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800'
+          }));
+      }),
+      catchError(err => {
+        console.error('Failed to load posts', err);
+        return of([] as BlogPostVM[]);
+      })
+    );
+  }
+
+  private formatDate(iso: string): string {
+    // "15 Nov, 2023"
+    const d = new Date(iso);
+    const day = d.getDate().toString().padStart(2, '0');
+    const month = d.toLocaleString('en-US', { month: 'short' });
+    const year = d.getFullYear();
+    return `${day} ${month}, ${year}`;
+  }
 }

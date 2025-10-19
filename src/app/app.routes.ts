@@ -6,6 +6,7 @@ import { Main } from './components/dashboard/main/main';
 import { Schedule as DashboardSchedule } from './components/dashboard/schedule/schedule';
 import { SpeakerList as DashboardSpeakers } from './components/dashboard/speaker-list/speaker-list';
 import { AttendList as DashboardAttendants } from './components/dashboard/attend-list/attend-list';
+import { TasksList as DashboardTaskList } from './components/dashboard/tasks-list/tasks-list';
 import { Calender as DashboardCalendar } from './components/dashboard/calender/calender';
 import { Profile as DashboardProfile } from './components/dashboard/profile/profile';
 import { EventCreation as DashboardEventCreation} from './components/dashboard/events/event-creation/event-creation';
@@ -20,6 +21,7 @@ import { Schedule } from './components/landing/schedule/schedule';
 import { Blog } from './components/landing/blog/blog';
 import { GetTicket } from './components/landing/get-ticket/get-ticket';
 import { MainLayout } from './components/landing/main-layout';
+import { EventExpenses  } from './components/dashboard/events/event-expenses/event-expenses';
 
 // Guards
 import { authGuard } from './core/guards/auth.guard';
@@ -40,14 +42,14 @@ export const routes: Routes = [
       { path: 'schedule', component: DashboardSchedule },
       { path: 'speakers', component: DashboardSpeakers },
       { path: 'attendants', component: DashboardAttendants },
+      { path: 'tasks', component: DashboardTaskList },
       { path: 'calendar', component: DashboardCalendar },
       { path: 'profile', component: DashboardProfile },
       { path: 'event-creation' , component: DashboardEventCreation},
       { path: 'event-edit/:id' , component: DashboardEventCreation},
       { path: 'event-list' , component: DashboardEventList},
       { path: 'event-details' , component: DashboardEventDetails},
-
-
+      {path: 'events-expenses',component: EventExpenses},
     ],
   },
   {
