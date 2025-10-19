@@ -8,6 +8,9 @@ import { SpeakerList as DashboardSpeakers } from './components/dashboard/speaker
 import { AttendList as DashboardAttendants } from './components/dashboard/attend-list/attend-list';
 import { Calender as DashboardCalendar } from './components/dashboard/calender/calender';
 import { Profile as DashboardProfile } from './components/dashboard/profile/profile';
+import { EventCreation as DashboardEventCreation} from './components/dashboard/events/event-creation/event-creation';
+import { EventDetails as DashboardEventDetails} from './components/dashboard/events/event-details/event-details';
+import { EventList as DashboardEventList} from './components/dashboard/events/event-list/event-list';
 
 
 import { Home } from './components/landing/home/home';
@@ -39,6 +42,12 @@ export const routes: Routes = [
       { path: 'attendants', component: DashboardAttendants },
       { path: 'calendar', component: DashboardCalendar },
       { path: 'profile', component: DashboardProfile },
+      { path: 'event-creation' , component: DashboardEventCreation},
+      { path: 'event-edit/:id' , component: DashboardEventCreation},
+      { path: 'event-list' , component: DashboardEventList},
+      { path: 'event-details' , component: DashboardEventDetails},
+
+
     ],
   },
   {
