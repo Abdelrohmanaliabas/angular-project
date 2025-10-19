@@ -2,9 +2,11 @@
   <!-- Header -->
   <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6 border-b-1">
     <h2 class="text-2xl font-semibold text-white ">Event List</h2>
-    <button class="px-4 py-2 rounded-lg bg-pink-600 text-sm text-gray-300 hover:bg-gray-700 transition">
-      Create Event
-    </button>
+    <button
+  class="px-4 py-2 rounded-lg bg-pink-600 text-sm text-gray-300 hover:bg-gray-700 transition"
+  [routerLink]="['/dashboard/event-creation']">
+  Create Event
+</button>
   </div>
 
   <!-- Table -->
