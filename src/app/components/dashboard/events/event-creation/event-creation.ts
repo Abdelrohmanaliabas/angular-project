@@ -5,10 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { Events } from '../../../../services/events';
 import { AuthService } from '../../../../core/services/auth.service';
 
-interface EventModel {
+export interface EventModel {
   title: string;
   details: string;
-  images: string[]; // multiple images as base64 strings
+  images: string[];
   startDate: string;
   endDate: string;
   time: string;
@@ -68,12 +68,10 @@ export class EventCreation implements OnInit {
       return;
     }
 
-    // Fetch event categories
     this.eventService.getEventCategories().subscribe((data) => {
       this.eventCategories = data;
     });
 
-    // Check if edit mode
     this.route.paramMap.subscribe((params) => {
       const idparam = params.get('id');
       if (idparam) {
@@ -86,7 +84,6 @@ export class EventCreation implements OnInit {
     });
   }
 
-  //  Convert selected images to base64 and store in event object
   onImageChange(event: Event, field: keyof typeof this.event, multiple: boolean = false) {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) return;
@@ -94,7 +91,7 @@ export class EventCreation implements OnInit {
     const files = Array.from(input.files);
 
     if (multiple) {
-      this.event[field] = [] as any; // clear previous images
+      this.event[field] = [] as any;
       files.forEach((file) => {
         const reader = new FileReader();
         reader.onload = () => {
@@ -111,12 +108,10 @@ export class EventCreation implements OnInit {
     }
   }
 
-  // removing images
   removeGalleryImage(index: number) {
     this.event.images.splice(index, 1);
   }
 
-  // Limit seat count to 300 max
   checkSeatLimit() {
     if (+this.event.seat > 300) {
       alert('Seat count cannot exceed 300');
@@ -124,7 +119,38 @@ export class EventCreation implements OnInit {
     }
   }
 
-  // Submit form data to JSON server
+  // Called when either startDate or endDate changes
+  onDateChange() {
+    const start = new Date(this.event.startDate);
+    const end = new Date(this.event.endDate);
+
+    if (this.event.startDate && this.event.endDate && end < start) {
+      alert('End date cannot be before start date.');
+      this.event.endDate = this.event.startDate;
+    }
+
+    this.updateStatusBasedOnDate();
+  }
+
+  // Automatically update status based on startDate
+  updateStatusBasedOnDate() {
+    if (!this.event.startDate) return;
+
+    const now = new Date();
+    const start = new Date(this.event.startDate);
+
+    now.setHours(0, 0, 0, 0);
+    start.setHours(0, 0, 0, 0);
+
+    if (start > now) {
+      this.event.status = 'Upcoming';
+    } else if (start.getTime() === now.getTime()) {
+      this.event.status = 'Inprogress';
+    } else {
+      this.event.status = 'Completed';
+    }
+  }
+
   submitForm() {
     const user = this.authService.getUser();
 
@@ -134,6 +160,8 @@ export class EventCreation implements OnInit {
     }
 
     this.event.createdBy = user.id;
+
+    this.updateStatusBasedOnDate(); // ensure status is correct before saving
 
     if (this.isEditMode) {
       this.eventService.updateEvent(this.id, this.event).subscribe(() => {
