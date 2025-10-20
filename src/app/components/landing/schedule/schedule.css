@@ -1,0 +1,23 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease forwards;
+}
+
+button:hover {
+  transform: translateY(-2px);
+}
+
+.shadow-pink-500\/20 {
+  box-shadow: 0 6px 18px rgba(236, 72, 153, 0.2);
+}
