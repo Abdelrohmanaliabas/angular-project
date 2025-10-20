@@ -73,4 +73,19 @@ export class AuthService {
   isAdmin(): boolean {
     return this.getUserRole() === 'admin';
   }
+  updatePassword(email: string, newPassword: string): Observable<any> {
+    return this.http.get<any[]>(`${this.apiUrl}?email=${email}`).pipe(
+      map((users) => {
+        if (users.length === 0) {
+          throw new Error('User not found');
+        }
+
+        const user = users[0];
+        const updatedUser = { ...user, password: newPassword };
+
+        return this.http.patch(`${this.apiUrl}/${user.id}`, updatedUser).subscribe();
+      })
+    );
+  }
+
 }
