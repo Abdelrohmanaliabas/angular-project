@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { Events } from '../../../../services/events';
 import { AuthService } from '../../../../core/services/auth.service';
 
-interface EventModel {
+export interface EventModel {
   title: string;
   details: string;
   images: string[];
