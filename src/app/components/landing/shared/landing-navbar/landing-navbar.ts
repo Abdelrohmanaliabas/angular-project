@@ -1,24 +1,45 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-landing-navbar',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './landing-navbar.html',
-  styleUrl: './landing-navbar.css'
+  styleUrls: ['./landing-navbar.css'],
 })
 export class LandingNavbar {
+  isDarkMode = false;
   isMenuOpen = false;
+  isLoggedIn = false; // 🔹 true لو المستخدم عامل تسجيل دخول
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+    // تحقق مبدأي من حالة الدخول
+    const token = localStorage.getItem('auth_token');
+    this.isLoggedIn = !!token;
+  }
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 
-  navigateToTicket() {
-    this.router.navigate(['/get-ticket']);
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    document.documentElement.classList.toggle('dark', this.isDarkMode);
+  }
+
+  navigate() {
+    if (this.isLoggedIn) {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('auth_token');
+    this.isLoggedIn = false;
+    this.router.navigate(['/']);
   }
 }
