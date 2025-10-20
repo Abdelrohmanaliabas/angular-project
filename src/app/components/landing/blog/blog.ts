@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { EventsService, EventWithRelations } from '../../../core/services/events.service';
 import { map, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
-
+import { RouterModule } from '@angular/router';
 interface BlogPostVM {
+  id: number;        // ✅ مضاف
   title: string;
-  date: string;     // formatted "dd MMM, yyyy"
+  date: string;
   comments: number;
   image: string;
 }
@@ -14,28 +15,26 @@ interface BlogPostVM {
 @Component({
   selector: 'app-blog',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './blog.html',
-  styleUrls: ['./blog.css'] // خليها plural
+  styleUrls: ['./blog.css']
 })
 export class Blog {
-
   posts$!: Observable<BlogPostVM[]>;
 
   constructor(private events: EventsService) {
     this.posts$ = this.events.listWithRelations().pipe(
-      map((items: EventWithRelations[]) => {
-        return items
-          // فرز حسب startDate تنازليًا
+      map((items: EventWithRelations[]) =>
+        items
           .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime())
-          // تحويل لكل عنصر لشكل واجهة العرض
           .map(ev => ({
+            id: ev.id, // ✅ أضف الـ id هنا
             title: ev.name,
             date: this.formatDate(ev.startDate),
             comments: ev.comments?.length ?? 0,
             image: ev.eventImage ?? 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800'
-          }));
-      }),
+          }))
+      ),
       catchError(err => {
         console.error('Failed to load posts', err);
         return of([] as BlogPostVM[]);
@@ -44,7 +43,6 @@ export class Blog {
   }
 
   private formatDate(iso: string): string {
-    // "15 Nov, 2023"
     const d = new Date(iso);
     const day = d.getDate().toString().padStart(2, '0');
     const month = d.toLocaleString('en-US', { month: 'short' });

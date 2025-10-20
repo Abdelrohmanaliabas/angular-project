@@ -22,7 +22,7 @@ import { Schedule } from './components/landing/schedule/schedule';
 import { Blog } from './components/landing/blog/blog';
 import { GetTicket } from './components/landing/get-ticket/get-ticket';
 import { MainLayout } from './components/landing/main-layout';
-
+import { EventInfo } from './components/landing/event-info/event-info';
 // Guards
 import { authGuard } from './core/guards/auth.guard';
 import { roleGuard } from './core/guards/role.guard';
@@ -71,6 +71,7 @@ export const routes: Routes = [
       { path: 'speakers', component: Speakers },
       { path: 'schedule', component: Schedule },
       { path: 'blog', component: Blog },
+      { path: 'event/:id', component: EventInfo },
     ],
   },
   { path: '**', redirectTo: '' },

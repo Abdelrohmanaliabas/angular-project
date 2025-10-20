@@ -1,0 +1,37 @@
+<section class="py-20 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
+  <div class="max-w-4xl mx-auto px-6">
+    <ng-container *ngIf="event$ | async as event; else loading">
+
+      <!-- الصورة -->
+      <img [src]="event.eventImage || 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800'"
+        alt="{{ event.name }}" class="w-full h-80 object-cover rounded-2xl shadow-lg mb-8" />
+
+      <!-- التفاصيل -->
+      <h1 class="text-4xl font-bold mb-4">{{ event.name }}</h1>
+      <p class="text-gray-500 mb-4">{{ event.category }} • {{ event.location }}</p>
+
+      <div class="flex items-center text-sm text-gray-400 mb-6 space-x-4">
+        <span>📅 {{ event.startDate | date:'mediumDate' }} →
+          {{ event.endDate | date:'mediumDate' }}</span>
+        <span class="px-3 py-1 bg-pink-500 text-white rounded-full text-xs">{{ event.status }}</span>
+      </div>
+
+      <p class="leading-relaxed text-lg mb-8">{{ event.description }}</p>
+
+      <!-- التعليقات -->
+      <div *ngIf="event.comments?.length">
+        <h2 class="text-2xl font-semibold mb-4">💬 Comments</h2>
+        <div *ngFor="let comment of event.comments" class="bg-white/10 p-4 rounded-lg mb-3 border border-gray-700/20">
+          <p>{{ comment.comment }}</p>
+        </div>
+      </div>
+
+      <!-- لو مفيش -->
+      <div *ngIf="!event.comments?.length" class="text-gray-400">No comments yet.</div>
+    </ng-container>
+
+    <ng-template #loading>
+      <div class="text-center text-gray-400">Loading event details...</div>
+    </ng-template>
+  </div>
+</section>
