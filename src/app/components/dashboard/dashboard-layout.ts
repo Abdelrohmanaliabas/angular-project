@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { Sidebar } from './shared/sidebar/sidebar';
 import { Navbar } from './shared/navbar/navbar';
 import { Footer } from './shared/footer/footer';
+import { FeedbackMailService } from '../../core/services/feedback-mail.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -17,5 +18,10 @@ export class Dashboard {
 
   toggleSidebar() {
     this.sidebarCollapsed = !this.sidebarCollapsed;
+  }
+  constructor(private feedbackMailService: FeedbackMailService) {}
+
+  async ngOnInit() {
+    await this.feedbackMailService.sendFeedbackLinksForCompletedEvents();
   }
 }

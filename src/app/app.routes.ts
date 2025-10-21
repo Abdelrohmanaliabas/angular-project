@@ -15,7 +15,9 @@ import { EventDetails as DashboardEventDetails} from './components/dashboard/eve
 import { EventList as DashboardEventList} from './components/dashboard/events/event-list/event-list';
 import { EventExpenses as DashboardExpenses } from './components/dashboard/events/event-expenses/event-expenses';
 import { SpeakerInfo as DashboardSpeakerInfo } from './components/dashboard/speaker/speaker-info/speaker-info';
+import { FeedbackComponent as DashboardFeedback } from './components/dashboard/feedback/feedback';
 import { AddSpeaker } from './components/dashboard/speaker/add-speaker/add-speaker';
+import { EditSpeaker } from './components/dashboard/speaker/edit-speaker/edit-speaker';
 import { Home } from './components/landing/home/home';
 import { About } from './components/landing/about/about';
 import { Speakers } from './components/landing/speakers/speakers';
@@ -24,7 +26,8 @@ import { Blog } from './components/landing/blog/blog';
 import { GetTicket } from './components/landing/get-ticket/get-ticket';
 import { MainLayout } from './components/landing/main-layout';
 import { EventInfo } from './components/landing/event-info/event-info';
-import { EditSpeaker } from './components/dashboard/speaker/edit-speaker/edit-speaker';
+import { GuestFeedbackComponent } from './components/landing/guest-feedback/guest-feedback';
+
 
 // Guards
 import { authGuard } from './core/guards/auth.guard';
@@ -49,6 +52,7 @@ export const routes: Routes = [
       { path: 'guests', component: DashboardAttendants },
       { path: 'tasks', component: DashboardTaskList },
       { path: 'expenses', component: DashboardExpenses },
+      { path: 'feedback', component: DashboardFeedback },
       { path: 'calendar', component: DashboardCalendar },
       { path: 'profile', component: DashboardProfile },
       { path: 'event-creation' , component: DashboardEventCreation},
@@ -79,6 +83,7 @@ export const routes: Routes = [
       { path: 'schedule', component: Schedule },
       { path: 'blog', component: Blog },
       { path: 'event/:id', component: EventInfo },
+      { path: 'feedback/:eventId/:guestId', component: GuestFeedbackComponent },
     ],
   },
   { path: '**', redirectTo: '' },

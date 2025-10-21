@@ -13,7 +13,7 @@ export interface EventModel {
   location: string;
   startDate: string; // ISO format
   endDate: string;   // ISO format
-  createdBy: number;
+  createdBy: string;
   status: string;
   eventImage?: string;
 }
