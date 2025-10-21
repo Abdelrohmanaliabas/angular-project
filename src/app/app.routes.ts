@@ -53,7 +53,7 @@ export const routes: Routes = [
       { path: 'event-creation' , component: DashboardEventCreation},
       { path: 'event-edit/:id' , component: DashboardEventCreation},
       { path: 'event-list' , component: DashboardEventList},
-      { path: 'event-details' , component: DashboardEventDetails},
+      { path: 'event-details/:id' , component: DashboardEventDetails},
     ],
   },
   {
