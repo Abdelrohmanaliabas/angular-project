@@ -1,0 +1,35 @@
+<div class="feedback-wrapper" *ngIf="!loading">
+  <h2 *ngIf="event">Feedback for: {{ event.title }}</h2>
+
+  <!-- حالة تم إرسال الفيدباك مسبقًا -->
+  <div *ngIf="alreadySubmitted && !submitted">
+    <p class="alert">✅ You’ve already submitted feedback for this event.</p>
+  </div>
+
+  <!-- فورم الفيدباك -->
+  <div *ngIf="!alreadySubmitted && !submitted">
+    <div class="stars">
+      <span
+        *ngFor="let star of [1,2,3,4,5]"
+        (click)="setRating(star)"
+        [class.selected]="star <= rating"
+      >
+        ★
+      </span>
+    </div>
+
+    <textarea
+      [(ngModel)]="comment"
+      placeholder="Write your feedback..."
+      rows="4"
+    ></textarea>
+
+    <button (click)="submitFeedback()">Submit Feedback</button>
+  </div>
+
+  <!-- حالة النجاح -->
+  <div *ngIf="submitted">
+    <h3>🎉 Thank you for your feedback!</h3>
+    <p>Your response has been recorded.</p>
+  </div>
+</div>

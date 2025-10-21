@@ -1,0 +1,40 @@
+<div class="min-h-screen p-4 md:p-6 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+  <div class="max-w-7xl mx-auto">
+
+    <h2 class="text-2xl font-semibold mb-6">My Feedback</h2>
+
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow overflow-hidden">
+      <!-- Table Header -->
+      <div class="hidden md:grid grid-cols-12 gap-4 px-6 py-3 font-semibold text-sm border-b border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
+        <div class="col-span-1">ID</div>
+        <div class="col-span-3">Event</div>
+        <div class="col-span-2">Rating</div>
+        <div class="col-span-5">Comment</div>
+        <div class="col-span-1">Date</div>
+      </div>
+
+      <!-- Table Body -->
+      <div class="divide-y divide-gray-100 dark:divide-gray-700">
+        <ng-container *ngIf="!loading; else loadingTpl">
+          <div *ngFor="let fb of feedbacks" class="px-4 py-4 hover:bg-gray-50 dark:hover:bg-gray-900 transition">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+              <div class="md:col-span-1 font-medium">#{{ fb.feedback.id }}</div>
+              <div class="md:col-span-3 font-semibold">{{ fb.event.title }}</div>
+              <div class="md:col-span-2 text-yellow-500 font-semibold">{{ getStars(fb.feedback.rating) }}</div>
+              <div class="md:col-span-5 text-sm">{{ fb.feedback.comment || '-' }}</div>
+              <div class="md:col-span-1 text-sm">{{ formatDate(fb.feedback.createdAt || '') }}</div>
+            </div>
+          </div>
+
+          <div *ngIf="feedbacks.length === 0" class="p-6 text-center text-gray-500 dark:text-gray-400">
+            No feedback found.
+          </div>
+        </ng-container>
+
+        <ng-template #loadingTpl>
+          <div class="p-6 text-center text-gray-500 dark:text-gray-400">Loading Feedback...</div>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>

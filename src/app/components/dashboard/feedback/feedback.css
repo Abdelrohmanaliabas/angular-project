@@ -1,0 +1,7 @@
+/* إضافات بسيطة لتجميل hover ولتوافق Dark Mode */
+:host ::ng-deep .hover\:bg-gray-50:hover {
+  transition: background-color 0.2s;
+}
+:host ::ng-deep .dark\:hover\:bg-gray-900:hover {
+  transition: background-color 0.2s;
+}
