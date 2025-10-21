@@ -1,24 +1,43 @@
-<section id="blog" class="py-20 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<section id="blog"
+  class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-700 text-gray-900 dark:text-white relative overflow-hidden">
 
+  <!-- تأثير خلفية خفيف -->
+  <div class="absolute inset-0 opacity-10">
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600" alt=""
+      class="object-cover w-full h-full" />
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+    <!-- العنوان -->
     <div class="text-center mb-12">
-      <div class="text-blue-600 font-semibold mb-4">LATEST NEWS FROM BLOG</div>
+      <div class="text-blue-600 dark:text-blue-400 font-semibold mb-4">LATEST NEWS FROM BLOG</div>
       <h2 class="text-4xl md:text-5xl font-bold">
-        EXPOVENT <span class="text-pink-500">INSIGHT</span>
+        EXPOVENT <span class="text-pink-500 dark:text-pink-400">INSIGHT</span>
       </h2>
     </div>
 
+    <!-- البوستات -->
     <div class="grid md:grid-cols-3 gap-8">
       <ng-container *ngIf="posts$ | async as blogPosts; else loading">
         <div *ngFor="let post of blogPosts"
-          class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition">
-          <img [src]="post.image" [alt]="post.title" class="w-full h-64 object-cover" />
+          class="bg-white/90 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden hover:shadow-pink-500/20 dark:hover:shadow-pink-900/30 transition-all duration-500">
+
+          <!-- الصورة -->
+          <img [src]="post.image" [alt]="post.title"
+            (error)="post.image = 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=600'"
+            class="w-full h-64 object-cover hover:scale-105 transition-transform duration-500 rounded-t-2xl" />
+
+
+          <!-- المحتوى -->
           <div class="p-6">
-            <h3 class="text-xl font-bold mb-4 hover:text-pink-500 cursor-pointer transition">
+            <h3 [routerLink]="['/event', post.id]"
+              class="text-xl font-bold mb-4 text-gray-900 dark:text-white hover:text-pink-500 cursor-pointer transition">
               {{ post.title }}
             </h3>
 
-            <div class="flex items-center justify-between text-gray-500 text-sm mb-4">
+
+            <div class="flex items-center justify-between text-gray-500 dark:text-gray-400 text-sm mb-4">
               <div class="flex items-center space-x-2">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -38,23 +57,23 @@
               </div>
             </div>
 
+            <!-- التاج -->
             <span
-              class="inline-block bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs px-4 py-1 rounded-full">
+              class="inline-block bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs px-4 py-1 rounded-full shadow-md">
               Business
             </span>
           </div>
         </div>
 
         <!-- لو مفيش بوستات -->
-        <div *ngIf="!blogPosts.length" class="col-span-3 text-center text-gray-500">
+        <div *ngIf="!blogPosts.length" class="col-span-3 text-center text-gray-500 dark:text-gray-400">
           No posts to show.
         </div>
       </ng-container>
 
       <ng-template #loading>
-        <div class="col-span-3 text-center text-gray-500">Loading...</div>
+        <div class="col-span-3 text-center text-gray-500 dark:text-gray-400">Loading...</div>
       </ng-template>
     </div>
-
   </div>
 </section>

@@ -1,23 +1,45 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
-import { LandingNavbar } from './landing-navbar';
+@Component({
+  selector: 'app-landing-navbar',
+  standalone: true,
+  imports: [CommonModule, RouterLink, RouterLinkActive],
+  templateUrl: './landing-navbar.html',
+  styleUrls: ['./landing-navbar.css'],
+})
+export class LandingNavbar {
+  isDarkMode = false;
+  isMenuOpen = false;
+  isLoggedIn = false; // 🔹 true لو المستخدم عامل تسجيل دخول
 
-describe('LandingNavbar', () => {
-  let component: LandingNavbar;
-  let fixture: ComponentFixture<LandingNavbar>;
+  constructor(private router: Router) {
+    // تحقق مبدأي من حالة الدخول
+    const token = localStorage.getItem('auth_token');
+    this.isLoggedIn = !!token;
+  }
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [LandingNavbar]
-    })
-    .compileComponents();
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 
-    fixture = TestBed.createComponent(LandingNavbar);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+    document.documentElement.classList.toggle('dark', this.isDarkMode);
+  }
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
-});
+  navigate() {
+    if (this.isLoggedIn) {
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.router.navigate(['/login']);
+    }
+  }
+
+  logout() {
+    localStorage.removeItem('auth_token');
+    this.isLoggedIn = false;
+    this.router.navigate(['/']);
+  }
+}

@@ -2,9 +2,9 @@
   <div class="max-w-7xl mx-auto">
     <!-- Header -->
     <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-6">
-      <h2 class="text-2xl font-semibold">Attendant List</h2>
+      <h2 class="text-2xl font-semibold">Guest List</h2>
 
-      
+
       <div class="relative hidden sm:block">
         <i class="pi pi-search absolute left-3 top-2.5 text-gray-400"></i>
         <input
@@ -71,7 +71,7 @@
               [modal]="true"
               [style]="{ width: '400px' }"
               [draggable]="false"
-              header="Edit Attendant Status"
+              header="Edit Guest Status"
               [dismissableMask]="true"
               (onHide)="closeDialog()"
             >
@@ -118,13 +118,13 @@
           </div>
 
           <div *ngIf="attendees.length === 0" class="p-6 text-center text-gray-500 dark:text-gray-400">
-            No attendants found.
+            No Guest found.
           </div>
         </ng-container>
 
         <ng-template #loadingTpl>
           <div class="p-6 text-center">
-            <p class="text-gray-500 dark:text-gray-400">Loading attendants...</p>
+            <p class="text-gray-500 dark:text-gray-400">Loading Guest...</p>
           </div>
         </ng-template>
       </div>

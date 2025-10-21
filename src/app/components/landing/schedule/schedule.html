@@ -1,77 +1,99 @@
-  <section id="schedule" class="py-20 bg-gray-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-12">
-        <div class="text-blue-600 font-semibold mb-4">SCHEDULE OF EVENT</div>
-        <h2 class="text-4xl md:text-5xl font-bold">
-          CONFERENCE <span class="text-pink-500">SCHEDULE</span>
-        </h2>
-      </div>
+<section id="schedule"
+  class="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-700 text-gray-900 dark:text-white relative overflow-hidden">
 
-      <div class="flex justify-center space-x-4 mb-12">
-        <button
-          [class]="activeDay === 'day1' ? 'bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold transition' : 'bg-white text-gray-700 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold transition'"
-          (click)="setActiveDay('day1')">
-          Day One
-        </button>
-        <button
-          [class]="activeDay === 'day2' ? 'bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold transition' : 'bg-white text-gray-700 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold transition'"
-          (click)="setActiveDay('day2')">
-          Day Two
-        </button>
-        <button
-          [class]="activeDay === 'day3' ? 'bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold transition' : 'bg-white text-gray-700 hover:bg-gray-100 px-8 py-3 rounded-lg font-semibold transition'"
-          (click)="setActiveDay('day3')">
-          Day Three
-        </button>
-      </div>
+  <div class="absolute inset-0 opacity-10">
+    <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=1600" alt=""
+      class="object-cover w-full h-full" />
+  </div>
 
-      <div class="space-y-6">
-        <div *ngFor="let item of scheduleData[activeDay]; let i = index"
-          class="bg-white rounded-2xl shadow-lg overflow-hidden">
-          <div class="p-8">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center space-x-6">
-                <img [src]="item.image" [alt]="item.speaker" class="w-20 h-20 rounded-full object-cover" />
-                <div>
-                  <h3 class="text-xl font-bold">{{ item.speaker }}</h3>
-                  <p class="text-gray-600">{{ item.role }}</p>
-                </div>
-              </div>
-              <div class="flex items-center space-x-8">
-                <h4 class="text-xl font-bold">{{ item.title }}</h4>
-                <button (click)="toggleScheduleItem(i)" class="text-2xl font-light">
-                  {{ item.expanded ? '−' : '+' }}
-                </button>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+    <!-- العنوان -->
+    <div class="text-center mb-12">
+      <div class="text-blue-600 dark:text-blue-400 font-semibold mb-4">SCHEDULE OF EVENT</div>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white">
+        CONFERENCE <span class="text-pink-500 dark:text-pink-400">SCHEDULE</span>
+      </h2>
+    </div>
+
+    <!-- أزرار الأيام -->
+    <div class="flex justify-center flex-wrap gap-4 mb-12">
+      <button
+        [class]="activeDay === 'day1'
+          ? 'bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold shadow-lg transition'
+          : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 px-8 py-3 rounded-lg font-semibold transition'"
+        (click)="setActiveDay('day1')">Day One</button>
+
+      <button
+        [class]="activeDay === 'day2'
+          ? 'bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold shadow-lg transition'
+          : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 px-8 py-3 rounded-lg font-semibold transition'"
+        (click)="setActiveDay('day2')">Day Two</button>
+
+      <button
+        [class]="activeDay === 'day3'
+          ? 'bg-gradient-to-r from-pink-500 to-red-500 text-white px-8 py-3 rounded-lg font-semibold shadow-lg transition'
+          : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 px-8 py-3 rounded-lg font-semibold transition'"
+        (click)="setActiveDay('day3')">Day Three</button>
+    </div>
+
+    <!-- المحتوى -->
+    <div class="space-y-6">
+      <div *ngFor="let item of scheduleData[activeDay]; let i = index"
+        class="bg-white/90 dark:bg-gray-800/80 backdrop-blur-md rounded-2xl shadow-lg overflow-hidden transition-all duration-500 hover:shadow-pink-500/20">
+
+        <div class="p-8">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+
+            <!-- بيانات المتحدث -->
+            <div class="flex items-center space-x-6">
+              <img [src]="item.image" [alt]="item.speaker"
+                class="w-20 h-20 rounded-full object-cover ring-2 ring-pink-500/40 shadow-md" />
+              <div>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white">{{ item.speaker }}</h3>
+                <p class="text-gray-600 dark:text-gray-400">{{ item.role }}</p>
               </div>
             </div>
 
-            <div *ngIf="item.expanded" class="mt-6">
-              <p class="text-gray-600 mb-4">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam, nulla. Veritatis magnam esse
-                laboriosam aliquam sunt voluptate sequi nesciunt officia, sint culpa! Numquam, soluta commodi. Ex
-                laborum natus iste nihil?
-              </p>
-              <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200" alt="Conference"
-                class="w-full rounded-xl" />
-              <div class="flex items-center space-x-6 mt-4 text-gray-600">
-                <div class="flex items-center space-x-2">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                  </svg>
-                  <span>{{ item.date }}</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
-                  </svg>
-                  <span>{{ item.date }}</span>
-                </div>
+            <!-- العنوان وزر التوسيع -->
+            <div class="flex items-center space-x-8">
+              <h4 class="text-xl font-bold text-gray-900 dark:text-white">{{ item.title }}</h4>
+              <button (click)="toggleScheduleItem(i)"
+                class="text-2xl font-light text-gray-600 dark:text-gray-300 hover:text-pink-500 transition">
+                {{ item.expanded ? '−' : '+' }}
+              </button>
+            </div>
+          </div>
+
+          <!-- المحتوى الموسّع -->
+          <div *ngIf="item.expanded" class="mt-6 border-t border-gray-200 dark:border-gray-700 pt-6 animate-fadeIn">
+            <p class="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, nulla. Veritatis magnam esse
+              laboriosam aliquam sunt voluptate sequi nesciunt officia, sint culpa! Numquam, soluta commodi.
+            </p>
+
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200" alt="Conference"
+              class="w-full rounded-xl shadow-md dark:shadow-pink-900/20" />
+
+            <div class="flex flex-wrap items-center gap-6 mt-4 text-gray-600 dark:text-gray-400">
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <span>{{ item.date }}</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                </svg>
+                <span>Location TBD</span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>

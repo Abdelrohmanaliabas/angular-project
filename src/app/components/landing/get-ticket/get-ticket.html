@@ -25,19 +25,17 @@
       </div>
 
       <div>
-        <label class="block text-sm font-medium mb-1">Ticket Type</label>
-        <select formControlName="ticketType"
+        <label class="block text-sm font-medium mb-1">Event</label>
+        <select formControlName="eventId"
           class="w-full p-3 rounded bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500">
-          <option value="" disabled selected>Select ticket type</option>
-          <option value="regular">Regular</option>
-          <option value="vip">VIP</option>
-          <option value="student">Student</option>
+          <option [ngValue]="null" disabled>Select event</option>
+          <option *ngFor="let ev of events" [ngValue]="ev.id">{{ ev.title || ev.name }}</option>
         </select>
       </div>
 
-      <button type="submit" [disabled]="ticketForm.invalid"
+      <button type="submit" [disabled]="ticketForm.invalid || loading"
         class="w-full bg-gradient-to-r from-pink-500 to-red-500 text-white font-semibold py-3 rounded-lg hover:shadow-lg transition">
-        Buy Ticket
+        {{ loading ? 'Processing...' : 'Reserve Ticket' }}
       </button>
     </form>
 

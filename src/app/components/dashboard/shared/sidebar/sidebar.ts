@@ -15,14 +15,12 @@ export class Sidebar {
 
   navLinks = [
     { label: 'Dashboard', icon: 'pi pi-home', path: 'home' },
-    { label: 'Schedule List', icon: 'pi pi-calendar', path: 'schedule' },
     { label: 'Speaker List', icon: 'pi pi-user', path: 'speakers' },
-    { label: 'Attendant List', icon: 'pi pi-users', path: 'attendants' },
+    { label: 'Guest List', icon: 'pi pi-users', path: 'guests' },
     { label: 'Upcoming Event', icon: 'pi pi-calendar-plus', path: 'event-list' },
     { label: 'Tasks List', icon: 'pi pi-calendar', path: 'tasks' },
-    { label: 'Upcoming Event', icon: 'pi pi-calendar-plus', path: 'upcoming' },
+    { label: 'Expenses', icon: 'pi pi-calendar', path: 'expenses' },
     { label: 'Calendar', icon: 'pi pi-calendar-times', path: 'calendar' },
-    { label: 'Venue', icon: 'pi pi-map-marker', path: 'venue' },
     { label: 'Profile', icon: 'pi pi-user-edit', path: 'profile' },
   ];
 
