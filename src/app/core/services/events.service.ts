@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-
+import { Observable, forkJoin, of } from 'rxjs';
+import { map, catchError, switchMap } from 'rxjs/operators';
 // =============================
 // 🧩 النماذج Models
 // =============================
@@ -19,16 +19,16 @@ export interface EventModel {
 }
 
 export interface CommentModel {
-  id: string | number;
+  id: string ;
   eventId: number;
   user_id?: number;
   comment: string;
 }
 
 export interface FeedbackModel {
-  id: string | number;
-  guestId: number;
-  eventId: number;
+  id: string ;
+  guestId: string ;
+  eventId: string ;
   rating: number;
   comment?: string;
   createdAt?: string;
@@ -56,14 +56,35 @@ export class EventsService {
 
   // 📦 إحضار جميع الأحداث مع العلاقات (feedback + comments)
   listWithRelations(): Observable<EventWithRelations[]> {
-    const url = `${this.base}?_embed=comments&_embed=feedback`;
-    return this.http.get<EventWithRelations[]>(url);
+    return this.http.get<any[]>('http://localhost:3000/events').pipe(
+      switchMap(events => {
+        return this.http.get<any[]>('http://localhost:3000/feedback').pipe(
+          map(feedbacks => {
+            // اربط كل فيدباك بالحدث المناسب
+            return events.map(event => ({
+              ...event,
+              feedback: feedbacks.filter(f => f.eventId == event.id) // لاحظ == مش ===
+            }));
+          })
+        );
+      })
+    );
   }
 
   // 🔍 إحضار حدث واحد بالتفاصيل
-  getById(id: string): Observable<EventWithRelations> {
-    const url = `${this.base}/${id}?_embed=comments&_embed=feedback`;
-    return this.http.get<EventWithRelations>(url);
+  getById(id: string): Observable<any> {
+    const eventUrl = `${this.base}/${id}`;
+    const feedbackUrl = `http://localhost:3000/feedback?eventId=${id}`;
+
+    return forkJoin({
+      event: this.http.get<any>(eventUrl),
+      feedback: this.http.get<any[]>(feedbackUrl)
+    }).pipe(
+      map(({ event, feedback }) => ({
+        ...event,
+        feedback
+      }))
+    );
   }
 
   // 👤 إحضار الأحداث الخاصة بمستخدم محدد
