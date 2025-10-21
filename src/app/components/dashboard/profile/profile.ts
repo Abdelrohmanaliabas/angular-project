@@ -41,14 +41,46 @@ export class Profile implements OnInit{
     const file = event.target.files[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onload = () => {
-      const base64String = reader.result as string;
-      this.previewUrl = base64String;
-      this.user.avatar = base64String; 
-    };
-    reader.readAsDataURL(file);
+    this.compressAndConvertToBase64(file).then((compressedBase64) => {
+      this.previewUrl = compressedBase64;
+      this.user.avatar = compressedBase64; 
+    });
   }
+
+ 
+  private compressAndConvertToBase64(file: File): Promise<string> {
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (event: any) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const maxSize = 300; 
+          let width = img.width;
+          let height = img.height;
+
+          if (width > height && width > maxSize) {
+            height = (height * maxSize) / width;
+            width = maxSize;
+          } else if (height > maxSize) {
+            width = (width * maxSize) / height;
+            height = maxSize;
+          }
+
+          const ctx = canvas.getContext('2d')!;
+          canvas.width = width;
+          canvas.height = height;
+          ctx.drawImage(img, 0, 0, width, height);
+
+          const compressedBase64 = canvas.toDataURL('image/jpeg', 0.7); // 👈 جودة 70%
+          resolve(compressedBase64);
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+  }
+
 
   saveChanges() {
     if (!this.user.name || !this.user.email) {
