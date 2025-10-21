@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Auth } from './components/auth/auth';
 import { Register } from './components/auth/register';
 import { Dashboard } from './components/dashboard/dashboard-layout';
+import { ForgotPassword } from './components/auth/forgot-password/forgot-password';
 import { Main } from './components/dashboard/main/main';
 import { Schedule as DashboardSchedule } from './components/dashboard/schedule/schedule';
 import { SpeakerList as DashboardSpeakers } from './components/dashboard/speaker-list/speaker-list';
@@ -32,6 +33,7 @@ import { GuestGuard } from './core/guards/guest.guard';
 export const routes: Routes = [
   { path: 'login', component: Auth, canActivate: [GuestGuard] },
   { path: 'register', component: Register, canActivate: [GuestGuard] },
+  { path: 'forgot-password', component: ForgotPassword, canActivate: [GuestGuard] },
   {
     path: 'dashboard',
     component: Dashboard,
