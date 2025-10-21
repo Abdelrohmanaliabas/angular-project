@@ -14,7 +14,7 @@ export class Events {
   getEvents(): Observable<any> {
     return this.http.get(this.apiUrl);
   }
-  getEvent(id: number): Observable<any> {
+  getEvent(id: number|string): Observable<any> {
     return this.http.get(`${this.apiUrl}/${id}`);
   }
   addEvent(data: any): Observable<any> {
