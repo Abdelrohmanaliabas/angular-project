@@ -1,81 +1,58 @@
-import { Component ,OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { Route } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Events } from '../../../../services/events';
+import { CommonModule } from '@angular/common';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
-// import { TabViewModule } from 'primeng/tabview';
 
 @Component({
   selector: 'app-event-details',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './event-details.html',
-  styleUrl: './event-details.css'
+  styleUrls: ['./event-details.css'],
+  imports:[CommonModule]
 })
 export class EventDetails implements OnInit {
-  event: any = null;
-  categoryName: string = '';
-  showInviteModal = false;
-  inviteEmail = '';
-  inviteMsg = '';
+  eventId: string = '';
+  event: any;
 
-  constructor(private route: ActivatedRoute, private eventService: Events) {}
+  constructor(private route: ActivatedRoute, private eventsService: Events) {}
 
-  ngOnInit() {
-    const idParam = this.route.snapshot.paramMap.get('id');
-    if (idParam) {
-      const eventId = +idParam;
-      this.loadEvent(eventId);
+  ngOnInit(): void {
+    this.eventId = this.route.snapshot.paramMap.get('id') || '';
+    if (this.eventId) {
+      this.loadEventDetails(this.eventId);
     }
   }
 
-  loadEvent(id: number) {
-    this.eventService.getEvent(id).subscribe((eventData) => {
-      this.event = eventData;
-
-      // Fetch category name
-      this.eventService.getEventCategories().subscribe((categories) => {
-        const matched = categories.find((cat: any) => cat.id === eventData.categoryId);
-        this.categoryName = matched ? matched.name : 'Unknown';
-      });
+  loadEventDetails(id: string): void {
+    this.eventsService.getEvent(id).subscribe({
+      next: (eventData) => {
+        this.event = eventData;
+      },
+      error: (err) => {
+        console.error('Failed to load event', err);
+      },
     });
   }
 
-  // Email Invite Modal Logic
-  openInviteModal() {
-    this.showInviteModal = true;
-  }
-
-  closeInviteModal() {
-    this.showInviteModal = false;
-  }
-
-  sendInviteEmail() {
-    if (!this.inviteEmail || !this.inviteMsg) {
-      alert('Please enter both email and message.');
-      return;
-    }
-
-    const templateParams = {
-      to_email: this.inviteEmail,
-      message: this.inviteMsg,
-      event_title: this.event.title,
-    };
-
+  // Optional: Function to send event details via email
+  sendEmail(): void {
     emailjs
-      .send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, 'YOUR_USER_ID')
+      .send(
+        'your_service_id',
+        'your_template_id',
+        {
+          event_name: this.event.name,
+          event_description: this.event.description,
+          user_email: 'user@example.com', // Replace or bind with form
+        },
+        'your_user_id'
+      )
       .then(
         (response: EmailJSResponseStatus) => {
-          alert('Invitation sent successfully!');
-          this.closeInviteModal();
-          this.inviteEmail = '';
-          this.inviteMsg = '';
+          console.log('Email sent successfully!', response.status, response.text);
         },
-        (err) => {
-          alert('Failed to send invitation, please try again.');
-          console.error(err);
+        (error) => {
+          console.error('Email sending failed', error);
         }
       );
   }
