@@ -5,32 +5,49 @@
     <div class="bg-gray-800 rounded-xl p-6 shadow-xl">
       <div class="flex items-center justify-between mb-6">
         <h2 class="text-2xl font-bold">{{ event.title }}</h2>
-        <div class="text-xl gap-3"> <i class="fa-solid fa-pen-to-square"></i> </div>
+        <a [routerLink]="['/dashboard/event-edit', event.id]" class="text-pink-500 hover:text-pink-600 text-xl">
+  <i class="fa-solid fa-pen-to-square"></i>
+</a>
       </div>
       <!-- Rating -->
       <div class="flex items-center gap-6 mb-6 text-xl">
         <div class="flex items-center gap-2"> <span class="font-semibold">5.0</span>
-          <div class="flex gap-1 text-yellow-500"> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i
-              class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i> </div>
+          <div class="flex gap-1 text-yellow-500">
+             <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i> <i class="fa-solid fa-star"></i>
+               <i class="fa-solid fa-star"></i> </div>
         </div> <span class="text-gray-400 border-l border-r px-6">Review (1k)</span> <span class="text-gray-400">10k
           Attendant</span>
       </div>
       <!-- Speaker -->
       <div class="flex items-center gap-4 mb-6"> <img [src]="event.images?.[0] || 'assets/images/default.jpg'"
           alt="Speaker" class="w-16 h-16 rounded-full border-2 border-gray-600" /> <span
-          class="font-semibold text-lg">{{ event.speakername }}</span> </div> <!-- Tabs -->
-      <div class="flex gap-6 mb-6 border-b border-gray-700"> <button
-          class="pb-3 px-2 font-semibold text-pink-500 relative"> About <div
-            class="absolute bottom-0 left-0 right-0 h-0.5 bg-pink-500"></div> </button> </div>
+          class="font-semibold text-lg">{{ event.speakername }}</span> </div>
+          <!-- Tabs -->
+      <div class="flex gap-6 mb-6 border-b border-gray-700">
+        <button class="pb-3 px-2 font-semibold text-pink-500 relative">
+          About
+          <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-pink-500"></div>
+        </button>
+      </div>
       <div>
         <!-- Event Image -->
         <div class="rounded-lg overflow-hidden mb-6"> <img [src]="event.images?.[0] || 'assets/images/default.jpg'"
-            alt="Event" class="w-full h-80 object-cover" /> </div> <!-- About Section -->
+            alt="Event" class="w-full h-80 object-cover" /> </div>
+
+        <!-- About Section -->
         <div class="bg-gray-800 rounded-xl p-6 shadow-xl">
-          <h3 class="text-xl font-bold mb-4">About This Event</h3>
-          <p class="text-gray-300 mb-6"> {{ event.details }} </p>
-          <h3 class="text-xl font-bold mb-4">Event's Objectives</h3>
-          <p class="text-gray-300"> Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel tenetur, in rem saepe
+          <h3 class="text-xl font-bold mb-4">
+            About This Event
+          </h3>
+          <p class="text-gray-300 mb-6">
+            {{ event.details }}
+          </p>
+          <h3 class="text-xl font-bold mb-4">
+            Event's Objectives
+          </h3>
+          <p class="text-gray-300">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel tenetur, in rem saepe
             voluptas adipisci velit minus neque nemo eos autem alias veniam eveniet repudiandae magni veritatis labore
             accusantium consequuntur repellendus iste natus sint! Error recusandae, in voluptatem neque necessitatibus
             veritatis ipsa repellat numquam modi? Reiciendis magnam atque dolores, dicta commodi ea sapiente aliquam nam
@@ -49,8 +66,7 @@
               <label class="block text-gray-300 mb-2 font-medium">Invite:</label>
               <!-- Invite Guests Button -->
               <button
-                class="w-full bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg transition-colors font-medium"
-                >
+                class="w-full bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-lg transition-colors font-medium">
                 Invite Guests
               </button>
 
@@ -110,7 +126,7 @@
         <div class="border-b-1 pb-3">
           <span class="font-semibold">Category:</span>
           <span class="text-gray-300">
-            <!-- {{categoryName }} -->
+            {{ event.categoryName }}
           </span>
         </div>
         <div class="pb-3">

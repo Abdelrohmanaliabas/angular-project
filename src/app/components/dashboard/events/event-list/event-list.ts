@@ -63,18 +63,30 @@ export class EventList implements OnInit {
       },
     });
   }
-  applyFilters(): void {
-    this.filteredEvents = this.events.filter((event) => {
-      const matchesSearch =
-        this.searchTerm === '' || event.title.toLowerCase().includes(this.searchTerm.toLowerCase());
-      const matchesCategory =
-        this.selectedCategoryName === '' || event.categoryName === this.selectedCategoryName;
-      const matchesStatus = this.selectedStatus === '' || event.status === this.selectedStatus;
-      return;
-      matchesSearch && matchesCategory && matchesStatus;
-    });
-  }
+ applyFilters(): void {
+  const searchLower = this.searchTerm.toLowerCase();
+
+  this.filteredEvents = this.events.filter((event) => {
+    const matchesSearch =
+      this.searchTerm === '' ||
+      event.title?.toLowerCase().includes(searchLower) ||
+      event.speakername?.toLowerCase().includes(searchLower) ||
+      event.status?.toLowerCase().includes(searchLower)||
+      event.address?.toLowerCase().includes(searchLower);
+
+
+    const matchesCategory =
+      this.selectedCategoryName === '' || event.categoryName === this.selectedCategoryName;
+
+    const matchesStatus =
+      this.selectedStatus === '' || event.status === this.selectedStatus;
+
+    return matchesSearch && matchesCategory && matchesStatus;
+  });
+}
+
   confirmDelete(id: number): void {
+
     // Find the event by id
     const eventToDelete = this.events.find((event) => event.id === id);
     if (!eventToDelete) {

@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Events } from '../../../../services/events';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Component({
   selector: 'app-event-details',
   templateUrl: './event-details.html',
   styleUrls: ['./event-details.css'],
-  imports:[CommonModule]
+  imports:[CommonModule ,FormsModule,RouterModule]
 })
 export class EventDetails implements OnInit {
   eventId: string = '';
@@ -16,23 +18,49 @@ export class EventDetails implements OnInit {
 
   constructor(private route: ActivatedRoute, private eventsService: Events) {}
 
-  ngOnInit(): void {
-    this.eventId = this.route.snapshot.paramMap.get('id') || '';
-    if (this.eventId) {
-      this.loadEventDetails(this.eventId);
-    }
+ eventCategories: any[] = [];
+
+ngOnInit(): void {
+  this.eventId = this.route.snapshot.paramMap.get('id') || '';
+  if (this.eventId) {
+    this.loadEventDetails(this.eventId);
   }
+
+  // Load categories
+  this.eventsService.getEventCategories().subscribe({
+    next: (categories) => {
+      this.eventCategories = categories;
+
+      // If event is already loaded
+      if (this.event?.categoryId) {
+        this.setCategoryName();
+      }
+    }
+  });
+}
+
 
   loadEventDetails(id: string): void {
     this.eventsService.getEvent(id).subscribe({
       next: (eventData) => {
         this.event = eventData;
+         this.setCategoryName();
       },
       error: (err) => {
         console.error('Failed to load event', err);
       },
     });
   }
+
+  setCategoryName() {
+  if (this.event && this.event.categoryId && this.eventCategories.length > 0) {
+    const category = this.eventCategories.find(cat => +cat.id === +this.event.categoryId);
+    if (category) {
+      this.event.categoryName = category.name;
+    }
+  }
+}
+
 
   // Optional: Function to send event details via email
   sendEmail(): void {

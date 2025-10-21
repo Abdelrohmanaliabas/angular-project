@@ -51,7 +51,7 @@ export class EventCreation implements OnInit {
   };
 
   eventCategories: any[] = [];
-  id!: number;
+  id!: string;
   isEditMode = false;
 
   constructor(
@@ -62,25 +62,48 @@ export class EventCreation implements OnInit {
   ) {}
 
   ngOnInit() {
-    if (!this.authService.isLoggedIn()) {
-      alert('You must be logged in to access this page.');
-      this.router.navigate(['/login']);
-      return;
-    }
-    this.eventService.getEventCategories().subscribe((data) => {
-      this.eventCategories = data;
-    });
-    this.route.paramMap.subscribe((params) => {
-      const idparam = params.get('id');
-      if (idparam) {
-        this.isEditMode = true;
-        this.id = +idparam;
-        this.eventService.getEvent(this.id).subscribe((data) => {
-          this.event = { ...data, categoryId: +data.categoryId };
-        });
-      }
-    });
+  if (!this.authService.isLoggedIn()) {
+    alert('You must be logged in to access this page.');
+    this.router.navigate(['/login']);
+    return;
   }
+
+  this.eventService.getEventCategories().subscribe((data) => {
+    this.eventCategories = data;
+  });
+
+  this.route.paramMap.subscribe((params) => {
+    const idParam = params.get('id');
+
+    if (idParam) {
+      this.isEditMode = true;
+      this.id = idParam;
+      console.log('Edit mode with ID:', this.id); // Debug log
+
+      this.eventService.getEvent(this.id).subscribe({
+        next: (data) => {
+          if (data) {
+            console.log('Event data loaded:', data); // Debug log
+            this.event = {
+              ...data,
+              categoryId: +data.categoryId || null,
+              images: data.images || []
+            };
+          } else {
+            alert('Event not found.');
+            this.router.navigate(['/dashboard/event-list']);
+          }
+        },
+        error: (err) => {
+          console.error('Failed to fetch event:', err);
+          alert('Failed to load event data.');
+          this.router.navigate(['/dashboard/event-list']);
+        }
+      });
+    }
+  });
+}
+
   onImageChange(event: Event, field: keyof typeof this.event, multiple: boolean = false) {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) return;

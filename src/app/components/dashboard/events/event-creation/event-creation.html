@@ -13,7 +13,7 @@
           class="w-full bg-gray-700 px-4 py-3 rounded-lg placeholder-gray-500 resize-none focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
       </div>
        <!-- Multiple Image Upload -->
-      <div class="mb-4"> <label class="block font-semibold mb-2">Event Images</label> <input type="file" multiple
+      <div class="mb-4"> <label class="block font-semibold mb-2">Event Images (max 2 images)</label> <input type="file" multiple
           (change)="onImageChange($event, 'images', true)" accept="image/*" [disabled]="event.images.length >= 5"
           class="block w-full text-white bg-gray-700 file:bg-pink-600 file:hover:bg-pink-700 file:text-white file:font-semibold file:rounded-lg file:px-4 file:py-2 file:border-0 focus:outline-none focus:ring-2 focus:ring-pink-500" />
       </div>
@@ -29,11 +29,11 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div> <label class="block font-semibold mb-2">Start Date</label> <input type="date"
             [(ngModel)]="event.startDate" name="startDate" required (change)="onDateChange()"
-            class="w-full bg-gray-700 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500" />
+            class="w-full bg-gray-700 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-500" />
         </div>
         <div> <label class="block font-semibold mb-2">End Date</label> <input type="date" [(ngModel)]="event.endDate"
             name="endDate" required (change)="onDateChange()"
-            class="w-full bg-gray-700 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500" />
+            class="w-full bg-gray-700 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-500" />
         </div>
       </div>
        <!-- Time -->
@@ -69,16 +69,16 @@
     <div class="p-8 space-y-6">
       <div> <label class="block font-semibold mb-2">Speaker Name</label> <input type="text"
           [(ngModel)]="event.speakername" name="speakerName" required placeholder="Enter speaker name"
-          class="w-full bg-gray-700 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500" /> </div>
+          class="w-full bg-gray-700 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-500" /> </div>
       <div> <label class="block font-semibold mb-2">Email</label> <input type="email" [(ngModel)]="event.email"
           name="email" required placeholder="Enter email"
-          class="w-full bg-gray-700 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500" /> </div>
+          class="w-full bg-gray-700 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-500" /> </div>
       <div> <label class="block font-semibold mb-2">Phone</label> <input type="tel" [(ngModel)]="event.phone"
           name="phone" required placeholder="Enter phone"
-          class="w-full bg-gray-700 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500" /> </div>
+          class="w-full bg-gray-700 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-500" /> </div>
       <div> <label class="block font-semibold mb-2">Designation</label> <input type="text"
           [(ngModel)]="event.designation" name="designation" required placeholder="Enter designation"
-          class="w-full bg-gray-700 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500" /> </div>
+          class="w-full bg-gray-700 px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500 placeholder-gray-500" /> </div>
       <!-- Submit -->
       <div class="pt-4"> <button type="submit"
           class="w-full bg-pink-600 hover:bg-pink-700 px-6 py-3 rounded-lg font-semibold text-white transition-all">
