@@ -12,10 +12,8 @@ import { AppToggletheme } from '../../../shared/app-toggletheme/app-toggletheme'
 export class LandingNavbar {
   isDarkMode = false;
   isMenuOpen = false;
-  isLoggedIn = false; // 🔹 true لو المستخدم عامل تسجيل دخول
-
+  isLoggedIn = false;
   constructor(private router: Router) {
-    // تحقق مبدأي من حالة الدخول
     const token = localStorage.getItem('auth_token');
     this.isLoggedIn = !!token;
   }
