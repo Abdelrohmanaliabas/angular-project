@@ -70,8 +70,7 @@ export class EventList implements OnInit {
       const matchesCategory =
         this.selectedCategoryName === '' || event.categoryName === this.selectedCategoryName;
       const matchesStatus = this.selectedStatus === '' || event.status === this.selectedStatus;
-      return;
-      matchesSearch && matchesCategory && matchesStatus;
+      return matchesSearch && matchesCategory && matchesStatus;
     });
   }
   confirmDelete(id: number): void {

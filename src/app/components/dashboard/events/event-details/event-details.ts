@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Events } from '../../../../services/events';
+import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
@@ -8,7 +9,7 @@ import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
   selector: 'app-event-details',
   templateUrl: './event-details.html',
   styleUrls: ['./event-details.css'],
-  imports:[CommonModule]
+  imports:[CommonModule ,FormsModule]
 })
 export class EventDetails implements OnInit {
   eventId: string = '';

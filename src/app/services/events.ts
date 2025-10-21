@@ -20,13 +20,13 @@ export class Events {
   addEvent(data: any): Observable<any> {
     return this.http.post(this.apiUrl, data);
   }
-  updateEvent(id: number, data: any): Observable<any> {
+  updateEvent(id: number|string, data: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, data);
   }
-  deleteEvent(id: number): Observable<any> {
+  deleteEvent(id: number|string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/${id}`);
   }
-  getEventsByUser(userId: number): Observable<any> {
+  getEventsByUser(userId: number|string): Observable<any> {
     return this.http.get(`${this.apiUrl}?createdBy=${userId}`);
   }
   getEventCategories(): Observable<any> {
