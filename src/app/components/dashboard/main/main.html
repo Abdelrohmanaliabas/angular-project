@@ -1,139 +1,98 @@
-<!-- Simple One-Page Event Dashboard -->
-<div class="dashboard">
-  <!-- Stats Cards -->
-  <section class="cards">
-    <div class="card">
-      <div>
-        <h2>1250+</h2>
-        <p>Total Registration</p>
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 p-6">
+  <div class="max-w-7xl mx-auto space-y-6">
+    <!-- Cards -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="p-4 rounded-xl bg-white dark:bg-gray-800 shadow flex items-center justify-between">
+        <div>
+          <div class="text-2xl font-bold">{{ totalRegistrations }}</div>
+          <div class="text-sm text-gray-500 dark:text-gray-400">Total Registrations</div>
+        </div>
+        <div class="text-3xl text-pink-500">👥</div>
       </div>
-      <div class="icon pink">👥</div>
-    </div>
 
-    <div class="card">
-      <div>
-        <h2>125+</h2>
-        <p>Total Speakers</p>
+      <div class="p-4 rounded-xl bg-white dark:bg-gray-800 shadow flex items-center justify-between">
+        <div>
+          <div class="text-2xl font-bold">{{ totalSpeakers }}</div>
+          <div class="text-sm text-gray-500 dark:text-gray-400">Speakers</div>
+        </div>
+        <div class="text-3xl text-orange-400">🎤</div>
       </div>
-      <div class="icon pink">🎤</div>
-    </div>
 
-    <div class="card">
-      <div>
-        <h2>35</h2>
-        <p>New Events</p>
+      <div class="p-4 rounded-xl bg-white dark:bg-gray-800 shadow flex items-center justify-between">
+        <div>
+          <div class="text-2xl font-bold">{{ newEvents }}</div>
+          <div class="text-sm text-gray-500 dark:text-gray-400">Events</div>
+        </div>
+        <div class="text-3xl text-emerald-400">🎫</div>
       </div>
-      <div class="icon pink">🎫</div>
-    </div>
 
-    <div class="card">
-      <div>
-        <h2>2560+</h2>
-        <p>Total Ticket Sold</p>
+      <div class="p-4 rounded-xl bg-white dark:bg-gray-800 shadow flex items-center justify-between">
+        <div>
+          <div class="text-2xl font-bold">{{ ticketsSold }}</div>
+          <div class="text-sm text-gray-500 dark:text-gray-400">Tickets Sold</div>
+        </div>
+        <div class="text-3xl text-yellow-400">💰</div>
       </div>
-      <div class="icon pink">💰</div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Two Columns Section -->
-  <section class="two-cols">
-    <!-- Web Traffic -->
-    <div class="panel">
-      <h3>🌐 Web Traffic</h3>
-      <img src="https://placehold.co/500x200/ffe6ea/000?text=Chart+Preview" alt="chart" />
-    </div>
+    <!-- Two columns: charts and upcoming events -->
+    <section class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div class="lg:col-span-2 bg-white dark:bg-gray-800 rounded-xl p-4 shadow">
+        <h3 class="text-lg font-semibold mb-4">Overview</h3>
 
-    <!-- Schedule Events -->
-    <div class="panel">
-      <h3>🗓 Schedule Events</h3>
-      <ul class="event-list">
-        <li>
-          <img src="https://placehold.co/50x50" />
-          <div>
-            <strong>Digital Business Summit - 2023</strong>
-            <p>Andru Hebo · 9:00am - 5:00pm · California(CA), 92677</p>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded">
+            <canvas #trafficChart height="160"></canvas>
           </div>
-        </li>
-        <li>
-          <img src="https://placehold.co/50x50" />
-          <div>
-            <strong>NASA Space Apps Challenge - 2023</strong>
-            <p>Andru Hebo · 9:00am - 5:00pm · California(CA), 92677</p>
+
+          <div class="p-3 bg-gray-50 dark:bg-gray-900 rounded">
+            <canvas #ticketsChart height="160"></canvas>
           </div>
-        </li>
-        <li>
-          <img src="https://placehold.co/50x50" />
-          <div>
-            <strong>Product Design Seminar - 2023</strong>
-            <p>Andru Hebo · 9:00am - 5:00pm · California(CA), 92677</p>
+        </div>
+
+        <div class="mt-6">
+          <h4 class="text-sm font-semibold mb-2">Recent Events</h4>
+          <div class="space-y-3">
+            <div *ngFor="let ev of events.slice(-5).reverse()" class="flex items-center justify-between p-3 rounded hover:bg-gray-100 dark:hover:bg-gray-900 transition">
+              <div>
+                <div class="font-semibold">{{ ev.name || ev.title }}</div>
+                <div class="text-xs text-gray-500 dark:text-gray-400">{{ formatDate(ev.startDate) }} — {{ formatDate(ev.endDate) }}</div>
+              </div>
+              <div class="text-sm text-gray-500 dark:text-gray-400">{{ ev.status || '—' }}</div>
+            </div>
           </div>
-        </li>
-      </ul>
-    </div>
-  </section>
+        </div>
+      </div>
 
-  <!-- Ticket Sold + Seats + Visits -->
-  <section class="three-cols">
-    <div class="panel">
-      <h3>🎟 Ticket Sold</h3>
-      <p>Digital Business Summit - 2023 (350 / 175)</p>
-      <p>NASA Space Apps Challenge - 2023 (250 / 225)</p>
-    </div>
+      <!-- Right column: quick stats + table -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow">
+        <h3 class="text-lg font-semibold mb-4">Quick Actions</h3>
 
-    <div class="panel">
-      <h3>💺 Total Seats</h3>
-      <div class="circle">70%</div>
-      <p>Total Seats: $5500</p>
-      <p>Sold Seats: $4500</p>
-    </div>
+        <div class="space-y-3">
+          <button class="w-full py-2 rounded bg-primary-600 text-white">Create Event</button>
+          <button class="w-full py-2 rounded border border-gray-200 dark:border-gray-700">Manage Guests</button>
+        </div>
 
-    <div class="panel">
-      <h3>🌍 Visits by Source</h3>
-      <img src="https://placehold.co/200x200/ffe6ea/000?text=Pie+Chart" />
-      <p>Direct 30% | Email 25% | Social 30% | Others 15%</p>
-    </div>
-  </section>
+        <div class="mt-6">
+          <h4 class="text-sm font-semibold mb-2">Registrations</h4>
+          <div class="overflow-auto">
+            <table class="w-full text-sm">
+              <thead class="text-left text-gray-500 dark:text-gray-400">
+                <tr><th>ID</th><th>Name</th><th>Event</th><th>Date</th></tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let g of guests.slice(-6).reverse()" class="border-t border-gray-100 dark:border-gray-700">
+                  <td class="py-2">#{{ g.id }}</td>
+                  <td>{{ g.name }}</td>
+    <td>{{ getEventName(g.eventId) }}</td>
+    <td>{{ getEventDate(g.eventId) }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
-  <!-- Event Registration Table -->
-  <section class="panel table-panel">
-    <h3>🧾 Event Registration User List</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>ID No</th>
-          <th>Name</th>
-          <th>Seminar</th>
-          <th>Time</th>
-          <th>Date</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>#3265</td>
-          <td>Harry Porter</td>
-          <td>Digital Product Design Seminar</td>
-          <td>9:00am - 5:00pm</td>
-          <td>25 Jun 2023</td>
-          <td class="status approved">Approved</td>
-        </tr>
-        <tr>
-          <td>#6259</td>
-          <td>Lary Go</td>
-          <td>Graphic Design Seminar</td>
-          <td>9:00am - 5:00pm</td>
-          <td>28 Jun 2023</td>
-          <td class="status pending">Pending</td>
-        </tr>
-        <tr>
-          <td>#0326</td>
-          <td>Sumona Gang</td>
-          <td>Digital Product Seminar</td>
-          <td>9:00am - 5:00pm</td>
-          <td>30 Jun 2023</td>
-          <td class="status paid">Paid</td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
+      </div>
+    </section>
+  </div>
 </div>
