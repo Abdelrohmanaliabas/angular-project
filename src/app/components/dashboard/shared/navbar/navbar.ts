@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { AppToggletheme } from '../../../shared/app-toggletheme/app-toggletheme';
 import { AuthService } from '../../../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [CommonModule,AppToggletheme],
+  imports: [CommonModule,AppToggletheme,RouterModule],
   templateUrl: './navbar.html',
   styleUrl: './navbar.css'
 })

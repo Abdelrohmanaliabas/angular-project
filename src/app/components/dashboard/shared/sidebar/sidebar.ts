@@ -20,7 +20,6 @@ export class Sidebar {
     { label: 'Upcoming Event', icon: 'pi pi-calendar-plus', path: 'event-list' },
     { label: 'Tasks List', icon: 'pi pi-calendar', path: 'tasks' },
     { label: 'Expenses', icon: 'pi pi-calendar', path: 'expenses' },
-    { label: 'Upcoming Event', icon: 'pi pi-calendar-plus', path: 'upcoming' },
     { label: 'Calendar', icon: 'pi pi-calendar-times', path: 'calendar' },
     { label: 'Profile', icon: 'pi pi-user-edit', path: 'profile' },
   ];
