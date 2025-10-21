@@ -1,0 +1,54 @@
+<div class="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center py-10 px-4">
+  <div class="bg-white dark:bg-gray-800 rounded-2xl shadow-xl w-full max-w-2xl p-8">
+    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">Edit Speaker</h2>
+
+    <form (ngSubmit)="updateSpeaker()" #speakerForm="ngForm" class="space-y-6">
+      <!-- Full Name -->
+      <div>
+        <label class="block text-gray-600 dark:text-gray-300 mb-2">Full Name</label>
+        <input type="text" [(ngModel)]="speaker.name" name="name" required
+          class="w-full p-3 border rounded-xl bg-gray-50 dark:bg-gray-700 dark:text-white" />
+      </div>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-gray-600 dark:text-gray-300 mb-2">Email</label>
+        <input type="email" [(ngModel)]="speaker.email" name="email" required
+          class="w-full p-3 border rounded-xl bg-gray-50 dark:bg-gray-700 dark:text-white" />
+      </div>
+
+      <!-- Phone -->
+      <div>
+        <label class="block text-gray-600 dark:text-gray-300 mb-2">Phone</label>
+        <input type="text" [(ngModel)]="speaker.phone" name="phone"
+          class="w-full p-3 border rounded-xl bg-gray-50 dark:bg-gray-700 dark:text-white" />
+      </div>
+
+      <!-- Organization -->
+      <div>
+        <label class="block text-gray-600 dark:text-gray-300 mb-2">Organization</label>
+        <input type="text" [(ngModel)]="speaker.organization" name="organization"
+          class="w-full p-3 border rounded-xl bg-gray-50 dark:bg-gray-700 dark:text-white" />
+      </div>
+
+      <!-- Designation -->
+      <div>
+        <label class="block text-gray-600 dark:text-gray-300 mb-2">Designation</label>
+        <input type="text" [(ngModel)]="speaker.designation" name="designation"
+          class="w-full p-3 border rounded-xl bg-gray-50 dark:bg-gray-700 dark:text-white" />
+      </div>
+
+      <!-- Submit -->
+      <div class="flex justify-between items-center mt-8">
+        <button type="submit"
+          class="bg-pink-600 hover:bg-pink-700 text-white font-semibold px-6 py-3 rounded-xl shadow-md">
+          Save Changes
+        </button>
+        <button type="button" (click)="cancelEdit()"
+          class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold px-6 py-3 rounded-xl">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
