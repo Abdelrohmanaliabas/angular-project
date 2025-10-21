@@ -34,8 +34,9 @@
       <div class="flex justify-between items-center border-b border-gray-300 dark:border-gray-700 pb-3 mb-6">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white">About Me</h2>
         <div class="flex gap-3 text-xl text-gray-500 dark:text-gray-300">
-          <i class="fa-solid fa-pen-to-square hover:text-pink-500 cursor-pointer"></i>
-          <i class="fa-solid fa-trash hover:text-red-500 cursor-pointer"></i>
+          <i class="fa-solid fa-pen-to-square hover:text-pink-500 cursor-pointer" (click)="editSpeaker()"></i>
+          <i class="fa-solid fa-trash hover:text-red-500 cursor-pointer" (click)="deleteSpeaker()"></i>
+
         </div>
       </div>
 
