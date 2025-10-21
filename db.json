@@ -31,20 +31,48 @@
       "address": "Giza, Egypt"
     }
   ],
-
   "event_categories": [
-    { "id": "1", "name": "Music & Concerts" },
-    { "id": "2", "name": "Business & Professional" },
-    { "id": "3", "name": "Sports & Fitness" },
-    { "id": "4", "name": "Arts & Culture" },
-    { "id": "5", "name": "Food & Drink" },
-    { "id": "6", "name": "Health & Wellness" },
-    { "id": "7", "name": "Technology" },
-    { "id": "8", "name": "Community & Causes" },
-    { "id": "9", "name": "Family & Kids" },
-    { "id": "10", "name": "Education" }
+    {
+      "id": "1",
+      "name": "Music & Concerts"
+    },
+    {
+      "id": "2",
+      "name": "Business & Professional"
+    },
+    {
+      "id": "3",
+      "name": "Sports & Fitness"
+    },
+    {
+      "id": "4",
+      "name": "Arts & Culture"
+    },
+    {
+      "id": "5",
+      "name": "Food & Drink"
+    },
+    {
+      "id": "6",
+      "name": "Health & Wellness"
+    },
+    {
+      "id": "7",
+      "name": "Technology"
+    },
+    {
+      "id": "8",
+      "name": "Community & Causes"
+    },
+    {
+      "id": "9",
+      "name": "Family & Kids"
+    },
+    {
+      "id": "10",
+      "name": "Education"
+    }
   ],
-
   "events": [
     {
       "id": "1",
@@ -62,24 +90,6 @@
       "email": "event1@gmail.com",
       "phone": "01010000000",
       "designation": "Software Engineer",
-      "createdBy": "u1"
-    },
-    {
-      "id": "2",
-      "title": "Music Live Cairo",
-      "details": "Concert with local artists.",
-      "images": [],
-      "startDate": "2025-10-15",
-      "endDate": "2025-10-15",
-      "time": "20:00",
-      "address": "Cairo Opera House",
-      "categoryId": 1,
-      "status": "Upcoming",
-      "seat": 150,
-      "speakername": "DJ Khaled",
-      "email": "event2@gmail.com",
-      "phone": "01020000000",
-      "designation": "Performer",
       "createdBy": "u1"
     },
     {
@@ -119,7 +129,6 @@
       "createdBy": "u3"
     }
   ],
-
   "speaker": [
     {
       "id": "s1",
@@ -176,51 +185,273 @@
       "organization": "Inspire Co."
     }
   ],
-
   "tasks": [
-    { "id": "t1", "eventId": 1, "title": "Book venue", "status": "done" },
-    { "id": "t2", "eventId": 1, "title": "Send invitations", "status": "done" },
-    { "id": "t3", "eventId": 1, "title": "Arrange speakers", "status": "done" },
-    { "id": "t4", "eventId": 1, "title": "Prepare catering", "status": "pending" },
-    { "id": "t5", "eventId": 2, "title": "Hire photographer", "status": "done" },
-    { "id": "t6", "eventId": 2, "title": "Set stage", "status": "done" },
-    { "id": "t7", "eventId": 2, "title": "Book sound system", "status": "pending" },
-    { "id": "t8", "eventId": 3, "title": "Invite partners", "status": "done" },
-    { "id": "t9", "eventId": 3, "title": "Arrange seating", "status": "done" },
-    { "id": "t10", "eventId": 4, "title": "Promote event", "status": "done" },
-    { "id": "t11", "eventId": 4, "title": "Prepare flyers", "status": "done" }
+    {
+      "id": "t3",
+      "eventId": 1,
+      "title": "Arrange speakers",
+      "status": "done"
+    },
+    {
+      "id": "t4",
+      "eventId": 1,
+      "title": "Prepare catering",
+      "status": "pending"
+    },
+    {
+      "id": "t5",
+      "eventId": 2,
+      "title": "Hire photographer",
+      "status": "done"
+    },
+    {
+      "id": "t6",
+      "eventId": 2,
+      "title": "Set stage",
+      "status": "done"
+    },
+    {
+      "id": "t7",
+      "eventId": 2,
+      "title": "Book sound system",
+      "status": "pending"
+    },
+    {
+      "id": "t8",
+      "eventId": 3,
+      "title": "Invite partners",
+      "status": "done"
+    },
+    {
+      "id": "t9",
+      "eventId": 3,
+      "title": "Arrange seating",
+      "status": "done"
+    },
+    {
+      "id": "t10",
+      "eventId": 4,
+      "title": "Promote event",
+      "status": "done"
+    },
+    {
+      "id": "t11",
+      "eventId": 4,
+      "title": "Prepare flyers",
+      "status": "done"
+    },
+    {
+      "id": "8c26",
+      "title": "",
+      "description": "",
+      "priority": "Medium",
+      "status": "Completed",
+      "deadline": "2025-09-05",
+      "eventId": "1"
+    }
   ],
-
   "expenses": [
-    { "id": "ex1", "eventId": 1, "taskId": "t1", "name": "Venue Rent", "amount": 5000, "category": "Venue", "date": "2025-09-15", "notes": "Paid in advance" },
-    { "id": "ex2", "eventId": 1, "taskId": "t1", "name": "Decoration", "amount": 1500, "category": "Design", "date": "2025-09-16", "notes": "" },
-    { "id": "ex3", "eventId": 1, "taskId": "t2", "name": "Printing", "amount": 800, "category": "Promotion", "date": "2025-09-17", "notes": "" },
-    { "id": "ex4", "eventId": 2, "taskId": "t6", "name": "Sound System", "amount": 2000, "category": "Equipment", "date": "2025-10-10", "notes": "" },
-    { "id": "ex5", "eventId": 2, "taskId": "t6", "name": "Stage Setup", "amount": 1200, "category": "Equipment", "date": "2025-10-10", "notes": "" },
-    { "id": "ex6", "eventId": 3, "taskId": "t8", "name": "Catering", "amount": 3000, "category": "Food", "date": "2025-08-01", "notes": "" },
-    { "id": "ex7", "eventId": 3, "taskId": "t9", "name": "Chairs Rent", "amount": 1000, "category": "Venue", "date": "2025-08-02", "notes": "" },
-    { "id": "ex8", "eventId": 4, "taskId": "t11", "name": "Banners", "amount": 500, "category": "Marketing", "date": "2025-09-25", "notes": "" }
+    {
+      "id": "ex1",
+      "eventId": 1,
+      "taskId": null,
+      "name": "Venue Rent",
+      "amount": 5000,
+      "category": "Venue",
+      "date": "2025-09-15",
+      "notes": "Paid in advance"
+    },
+    {
+      "id": "ex2",
+      "eventId": 1,
+      "taskId": null,
+      "name": "Decoration",
+      "amount": 1500,
+      "category": "Design",
+      "date": "2025-09-16",
+      "notes": ""
+    },
+    {
+      "id": "ex3",
+      "eventId": 1,
+      "taskId": null,
+      "name": "Printing",
+      "amount": 800,
+      "category": "Promotion",
+      "date": "2025-09-17",
+      "notes": ""
+    },
+    {
+      "id": "ex4",
+      "eventId": 2,
+      "taskId": "t6",
+      "name": "Sound System",
+      "amount": 2000,
+      "category": "Equipment",
+      "date": "2025-10-10",
+      "notes": ""
+    },
+    {
+      "id": "ex5",
+      "eventId": 2,
+      "taskId": "t6",
+      "name": "Stage Setup",
+      "amount": 1200,
+      "category": "Equipment",
+      "date": "2025-10-10",
+      "notes": ""
+    },
+    {
+      "id": "ex6",
+      "eventId": 3,
+      "taskId": "t8",
+      "name": "Catering",
+      "amount": 3000,
+      "category": "Food",
+      "date": "2025-08-01",
+      "notes": ""
+    },
+    {
+      "id": "ex7",
+      "eventId": 3,
+      "taskId": "t9",
+      "name": "Chairs Rent",
+      "amount": 1000,
+      "category": "Venue",
+      "date": "2025-08-02",
+      "notes": ""
+    },
+    {
+      "id": "ex8",
+      "eventId": 4,
+      "taskId": "t11",
+      "name": "Banners",
+      "amount": 500,
+      "category": "Marketing",
+      "date": "2025-09-25",
+      "notes": ""
+    }
   ],
-
   "feedback": [
-    { "id": "1", "guestId": "g1", "eventId": "1", "rating": 5, "comment": "Excellent organization!", "createdAt": "2025-09-23" },
-    { "id": "2", "guestId": "g2", "eventId": "1", "rating": 4, "comment": "Good speakers.", "createdAt": "2025-09-23" },
-    { "id": "3", "guestId": "g3", "eventId": "1", "rating": 4, "comment": "Loved the content.", "createdAt": "2025-09-23" },
-    { "id": "4", "guestId": "g4", "eventId": "2", "rating": 5, "comment": "Great show!", "createdAt": "2025-10-16" },
-    { "id": "5", "guestId": "g5", "eventId": "3", "rating": 3, "comment": "Average.", "createdAt": "2025-08-06" },
-    { "id": "6", "guestId": "g6", "eventId": "4", "rating": 4, "comment": "Very informative.", "createdAt": "2025-10-05" }
+    {
+      "id": "1",
+      "guestId": "g1",
+      "eventId": "1",
+      "rating": 5,
+      "comment": "Excellent organization!",
+      "createdAt": "2025-09-23"
+    },
+    {
+      "id": "2",
+      "guestId": "g2",
+      "eventId": "1",
+      "rating": 4,
+      "comment": "Good speakers.",
+      "createdAt": "2025-09-23"
+    },
+    {
+      "id": "3",
+      "guestId": "g3",
+      "eventId": "1",
+      "rating": 4,
+      "comment": "Loved the content.",
+      "createdAt": "2025-09-23"
+    },
+    {
+      "id": "4",
+      "guestId": "g4",
+      "eventId": null,
+      "rating": 5,
+      "comment": "Great show!",
+      "createdAt": "2025-10-16"
+    },
+    {
+      "id": "5",
+      "guestId": "g5",
+      "eventId": "3",
+      "rating": 3,
+      "comment": "Average.",
+      "createdAt": "2025-08-06"
+    },
+    {
+      "id": "6",
+      "guestId": "g6",
+      "eventId": "4",
+      "rating": 4,
+      "comment": "Very informative.",
+      "createdAt": "2025-10-05"
+    }
   ],
-
   "guests": [
-    { "id": "g1", "name": "Ahmed Ali", "email": "ahmed@gmail.com", "status": "Invited", "eventId": 1 },
-    { "id": "g2", "name": "Mona Said", "email": "mona@gmail.com", "status": "FeedbackSent", "eventId": 1 },
-    { "id": "g3", "name": "Omar Fathy", "email": "omar@gmail.com", "status": "Invited", "eventId": 1 },
-    { "id": "g4", "name": "Yasmin Adel", "email": "yasmin@gmail.com", "status": "Invited", "eventId": 2 },
-    { "id": "g5", "name": "Ali Nour", "email": "ali@gmail.com", "status": "Invited", "eventId": 3 },
-    { "id": "g6", "name": "Laila Samir", "email": "laila@gmail.com", "status": "Invited", "eventId": 4 },
-    { "id": "g7", "name": "Mohamed Hany", "email": "mohamed@gmail.com", "status": "Invited", "eventId": 1 },
-    { "id": "g8", "name": "Nour Hassan", "email": "nour@gmail.com", "status": "Invited", "eventId": 2 },
-    { "id": "g9", "name": "Khaled Youssef", "email": "khaled@gmail.com", "status": "Invited", "eventId": 3 },
-    { "id": "g10", "name": "Sara Ali", "email": "sara@gmail.com", "status": "Invited", "eventId": 4 }
+    {
+      "id": "g1",
+      "name": "Ahmed Ali",
+      "email": "ahmed@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "g2",
+      "name": "Mona Said",
+      "email": "mona@gmail.com",
+      "status": "FeedbackSent",
+      "eventId": 1
+    },
+    {
+      "id": "g3",
+      "name": "Omar Fathy",
+      "email": "omar@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "g4",
+      "name": "Yasmin Adel",
+      "email": "yasmin@gmail.com",
+      "status": "Invited",
+      "eventId": 2
+    },
+    {
+      "id": "g5",
+      "name": "Ali Nour",
+      "email": "ali@gmail.com",
+      "status": "Invited",
+      "eventId": 3
+    },
+    {
+      "id": "g6",
+      "name": "Laila Samir",
+      "email": "laila@gmail.com",
+      "status": "Invited",
+      "eventId": 4
+    },
+    {
+      "id": "g7",
+      "name": "Mohamed Hany",
+      "email": "mohamed@gmail.com",
+      "status": "Invited",
+      "eventId": 1
+    },
+    {
+      "id": "g8",
+      "name": "Nour Hassan",
+      "email": "nour@gmail.com",
+      "status": "Invited",
+      "eventId": 2
+    },
+    {
+      "id": "g9",
+      "name": "Khaled Youssef",
+      "email": "khaled@gmail.com",
+      "status": "Invited",
+      "eventId": 3
+    },
+    {
+      "id": "g10",
+      "name": "Sara Ali",
+      "email": "sara@gmail.com",
+      "status": "Invited",
+      "eventId": 4
+    }
   ]
 }

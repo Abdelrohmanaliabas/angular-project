@@ -5,7 +5,7 @@ import { map, catchError } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { RouterModule } from '@angular/router';
 interface BlogPostVM {
-  id: number;        // ✅ مضاف
+  id: string | number;        // ✅ مضاف
   title: string;
   date: string;
   comments: number;
