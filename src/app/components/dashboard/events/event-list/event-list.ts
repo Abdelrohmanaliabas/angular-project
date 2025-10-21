@@ -74,6 +74,7 @@ export class EventList implements OnInit {
     });
   }
   confirmDelete(id: number): void {
+    
     // Find the event by id
     const eventToDelete = this.events.find((event) => event.id === id);
     if (!eventToDelete) {
