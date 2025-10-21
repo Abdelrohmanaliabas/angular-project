@@ -15,7 +15,7 @@ interface Expense {
 
 interface EventItem {
   id: number;
-  name: string;
+  title: string;
 }
 
 @Component({
@@ -57,12 +57,10 @@ export class EventExpenses implements OnInit {
   filterExpenses() {
     let filtered = this.expenses;
 
-    // فلترة حسب الحدث
     if (this.selectedEventId) {
       filtered = filtered.filter(e => e.eventId === this.selectedEventId);
     }
 
-    // فلترة حسب البحث
     if (this.searchTerm.trim()) {
       const term = this.searchTerm.toLowerCase();
       filtered = filtered.filter(e =>
@@ -104,6 +102,6 @@ export class EventExpenses implements OnInit {
 
   getEventName(eventId: number): string {
     const ev = this.events.find(e => e.id === eventId);
-    return ev ? ev.name : '—';
+    return ev ? ev.title : '—';
   }
 }

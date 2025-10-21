@@ -50,7 +50,7 @@ export class Main implements OnInit, AfterViewInit {
     });
 
     // assuming you have a "speakers" or count in events; fallback:
-    this.http.get<any[]>('http://localhost:3000/speakers').subscribe(speakers => {
+    this.http.get<any[]>('http://localhost:3000/speaker').subscribe(speakers => {
       this.totalSpeakers = (speakers || []).length;
     }, _ => {
       // fallback: count unique speaker names from events (if events contain speakers)

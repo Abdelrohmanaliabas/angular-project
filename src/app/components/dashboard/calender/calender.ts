@@ -22,7 +22,7 @@ export class Calender {
     this.eventsService.list().subscribe((data) => {
       this.events = data.map(e => ({
         id: e.id,
-        title: e.name,
+        title: e.title,
         start: e.startDate,
         end: e.endDate,
         color: this.getEventColor(e.status),

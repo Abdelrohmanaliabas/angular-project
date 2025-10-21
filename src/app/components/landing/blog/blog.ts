@@ -29,7 +29,7 @@ export class Blog {
           .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime())
           .map(ev => ({
             id: ev.id, // ✅ أضف الـ id هنا
-            title: ev.name,
+            title: ev.title,
             date: this.formatDate(ev.startDate),
             comments: ev.comments?.length ?? 0,
             image: ev.eventImage ?? 'https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800'

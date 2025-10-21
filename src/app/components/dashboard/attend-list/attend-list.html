@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>
 <div class="min-h-screen p-4 md:p-6 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
   <div class="max-w-7xl mx-auto">
     <!-- Header -->
@@ -36,13 +38,14 @@
               <div class="md:col-span-1 font-medium">#{{ att.id }}</div>
 
               <div class="md:col-span-3 flex items-center gap-3">
-                <img src="assets/images/img.jpg" alt="avatar" class="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-600" />
                 <span class="font-medium">{{ att.name }}</span>
               </div>
 
               <div class="md:col-span-3 text-sm">{{ att.email }}</div>
 
-              <div class="md:col-span-2 text-sm">{{ att.eventId || '—' }}</div>
+              <div class="md:col-span-2 text-sm">
+                {{ getEventName(att) || 'Unknown Event' }}
+              </div>
 
               <div class="md:col-span-2">
                 <span
