@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
-import { AppToggletheme } from '../../../shared/app-toggletheme/app-toggletheme';
+
 @Component({
   selector: 'app-landing-navbar',
   standalone: true,
-  imports: [CommonModule, RouterLink, RouterLinkActive, AppToggletheme],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './landing-navbar.html',
   styleUrls: ['./landing-navbar.css'],
 })
