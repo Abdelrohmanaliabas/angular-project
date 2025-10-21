@@ -5,7 +5,7 @@ import { Dashboard } from './components/dashboard/dashboard-layout';
 import { ForgotPassword } from './components/auth/forgot-password/forgot-password';
 import { Main } from './components/dashboard/main/main';
 import { Schedule as DashboardSchedule } from './components/dashboard/schedule/schedule';
-import { SpeakerList as DashboardSpeakers } from './components/dashboard/speaker-list/speaker-list';
+import { SpeakerList as DashboardSpeakers } from './components/dashboard/speaker/speaker-list/speaker-list';
 import { AttendList as DashboardAttendants } from './components/dashboard/attend-list/attend-list';
 import { TasksList as DashboardTaskList } from './components/dashboard/tasks-list/tasks-list';
 import { Calender as DashboardCalendar } from './components/dashboard/calender/calender';
@@ -14,8 +14,8 @@ import { EventCreation as DashboardEventCreation} from './components/dashboard/e
 import { EventDetails as DashboardEventDetails} from './components/dashboard/events/event-details/event-details';
 import { EventList as DashboardEventList} from './components/dashboard/events/event-list/event-list';
 import { EventExpenses as DashboardExpenses } from './components/dashboard/events/event-expenses/event-expenses';
-import { SpeakerInfo as DashboardSpeakerInfo } from './components/dashboard/speaker-info/speaker-info';
-import { AddSpeaker } from './components/dashboard/add-speaker/add-speaker';
+import { SpeakerInfo as DashboardSpeakerInfo } from './components/dashboard/speaker/speaker-info/speaker-info';
+import { AddSpeaker } from './components/dashboard/speaker/add-speaker/add-speaker';
 import { Home } from './components/landing/home/home';
 import { About } from './components/landing/about/about';
 import { Speakers } from './components/landing/speakers/speakers';
@@ -24,7 +24,7 @@ import { Blog } from './components/landing/blog/blog';
 import { GetTicket } from './components/landing/get-ticket/get-ticket';
 import { MainLayout } from './components/landing/main-layout';
 import { EventInfo } from './components/landing/event-info/event-info';
-import { EditSpeaker } from './components/dashboard/edit-speaker/edit-speaker';
+import { EditSpeaker } from './components/dashboard/speaker/edit-speaker/edit-speaker';
 
 // Guards
 import { authGuard } from './core/guards/auth.guard';

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
@@ -17,16 +17,26 @@ export class GuestsService {
 
   constructor(private http: HttpClient) {}
 
-  list(page = 1, limit = 10, q?: string): Observable<{ data: GuestModel[]; total: number }> {
+  list(
+    page = 1,
+    limit = 10,
+    q?: string,
+    allowedEventIds: number[] = [] // ← أضفنا دعم eventIds
+  ): Observable<{ data: GuestModel[]; total: number }> {
     return this.http.get<GuestModel[]>(this.base).pipe(
       map((data) => {
         if (q && q.trim()) {
           const term = q.trim().toLowerCase();
-          data = data.filter(item => item.name.toLowerCase().includes(term));
+          data = data.filter((item) => item.name.toLowerCase().includes(term));
+        }
+
+        if (allowedEventIds.length > 0) {
+          data = data.filter((item) =>
+            item.eventId ? allowedEventIds.includes(Number(item.eventId)) : false
+          );
         }
 
         const total = data.length;
-
         const start = (page - 1) * limit;
         const end = start + limit;
         const paginated = data.slice(start, end);
@@ -36,11 +46,10 @@ export class GuestsService {
     );
   }
 
-
-
   delete(id: number | string) {
     return this.http.delete(`${this.base}/${id}`);
   }
+
   update(id: number | string, data: Partial<GuestModel>) {
     return this.http.patch(`${this.base}/${id}`, data);
   }

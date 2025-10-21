@@ -25,13 +25,12 @@ export class GetTicket implements OnInit {
         '',
         [
           Validators.required,
-          Validators.pattern(/^(010|011|012|015)\d{8}$/)
-        ]
+          Validators.pattern(/^(010|011|012|015)\d{8}$/),
+        ],
       ],
       eventId: [null, Validators.required],
     });
 
-    // تحميل الأحداث من JSON Server
     this.http.get('http://localhost:3000/events').subscribe((data: any) => {
       this.events = data;
     });
@@ -44,7 +43,6 @@ export class GetTicket implements OnInit {
     const formData = this.ticketForm.value;
     const eventId = Number(formData.eventId);
 
-    // ✅ تأكد أن eventId رقم صحيح
     if (!eventId || isNaN(eventId)) {
       this.formMessage = 'Please select a valid event.';
       this.loading = false;
@@ -52,42 +50,28 @@ export class GetTicket implements OnInit {
     }
 
     this.http
-      .get<any[]>(`http://localhost:3000/guests?email=${formData.email}`)
-      .subscribe((users) => {
-        if (users.length > 0) {
-          const guest = users[0];
-          const updatedEvents = guest.events || [];
-
-          if (updatedEvents.includes(eventId)) {
-            this.formMessage = 'You have already reserved this event!';
-            this.loading = false;
-            return;
-          }
-
-          updatedEvents.push(eventId);
-
-          this.http
-            .patch(`http://localhost:3000/guests/${guest.id}`, { events: updatedEvents })
-            .subscribe(() => {
-              this.formMessage = 'Event added to your ticket successfully!';
-              this.loading = false;
-              this.ticketForm.reset();
-            });
-        } else {
-          const newGuest = {
-            name: formData.name,
-            email: formData.email,
-            phone: formData.phone,
-            status: 'Invited',
-            events: [eventId],
-          };
-
-          this.http.post('http://localhost:3000/guests', newGuest).subscribe(() => {
-            this.formMessage = 'Your ticket has been reserved successfully!';
-            this.loading = false;
-            this.ticketForm.reset();
-          });
+      .get<any[]>(`http://localhost:3000/guests?email=${formData.email}&eventId=${eventId}`)
+      .subscribe((existingGuests) => {
+        if (existingGuests.length > 0) {
+          this.formMessage = 'You have already reserved this event!';
+          this.loading = false;
+          return;
         }
+
+        const newGuest = {
+          id: Math.random().toString(36).substring(2, 8),
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          status: 'Invited',
+          eventId: eventId,
+        };
+
+        this.http.post('http://localhost:3000/guests', newGuest).subscribe(() => {
+          this.formMessage = 'Your ticket has been reserved successfully!';
+          this.loading = false;
+          this.ticketForm.reset();
+        });
       });
   }
 }

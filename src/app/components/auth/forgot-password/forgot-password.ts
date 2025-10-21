@@ -49,7 +49,6 @@ export class ForgotPassword {
     private router: Router
   ) {}
 
-  // 1️⃣ إرسال كود التحقق
   sendVerificationCode() {
     if (!this.email) {
       this.messageService.add({
@@ -60,7 +59,6 @@ export class ForgotPassword {
       return;
     }
 
-    // نتحقق أولاً إن المستخدم موجود في الـ JSON server
     this.http.get<any[]>(`${this.apiUrl}?email=${this.email}`).subscribe({
       next: (users) => {
         if (!users.length) {
@@ -72,7 +70,6 @@ export class ForgotPassword {
           return;
         }
 
-        // إنشاء كود التحقق
         this.generatedCode = Math.floor(100000 + Math.random() * 900000).toString();
 
         const templateParams = {
@@ -81,7 +78,6 @@ export class ForgotPassword {
           message: `Your password reset code is: ${this.generatedCode}`
         };
 
-        // إرسال الإيميل باستخدام EmailJS
         emailjs
           .send('service_2zkpunt', 'template_k9jr8j9', templateParams, '6SCuP-X4rdUdtYhaX')
           .then(() => {
@@ -110,7 +106,6 @@ export class ForgotPassword {
     });
   }
 
-  // 2️⃣ التحقق من الكود
   verifyCode() {
     if (this.verificationCode.trim() === this.generatedCode.trim()) {
       this.step = 'reset';
@@ -128,7 +123,6 @@ export class ForgotPassword {
     }
   }
 
-  // 3️⃣ إعادة تعيين كلمة المرور
   resetPassword() {
     if (this.newPassword !== this.confirmPassword) {
       this.messageService.add({
@@ -139,7 +133,6 @@ export class ForgotPassword {
       return;
     }
 
-    // تحديث كلمة المرور
     this.auth.updatePassword(this.email, this.newPassword).subscribe({
       next: () => {
         this.messageService.add({

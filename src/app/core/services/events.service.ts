@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 // =============================
 export interface EventModel {
   id: number;
-  name: string;
+  title: string;
   description: string;
   category: string;
   location: string;
