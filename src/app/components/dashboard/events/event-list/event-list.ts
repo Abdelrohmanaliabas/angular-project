@@ -4,10 +4,21 @@ import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../../core/services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Events } from '../../../../services/events';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MessageService, ConfirmationService } from 'primeng/api';
+
 @Component({
   selector: 'app-event-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule,
+    ToastModule,
+    ConfirmDialogModule,
+  ],
+  providers: [MessageService, ConfirmationService],
   templateUrl: './event-list.html',
   styleUrls: ['./event-list.css'],
 })
@@ -20,22 +31,31 @@ export class EventList implements OnInit {
   selectedStatus: string = '';
   statuses: string[] = ['Upcoming', 'Inprogress', 'Completed'];
   currentUserId!: number;
+
   constructor(
     private eventService: Events,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
   ) {}
+
   ngOnInit(): void {
     const user = this.authService.getUser();
     if (!user || !user.id) {
-      alert('You must be logged in to view your events.');
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Access Denied',
+        detail: 'You must be logged in to view your events.',
+      });
       this.router.navigate(['/login']);
       return;
     }
+
     this.currentUserId = user.id;
     this.loadCategoriesAndEvents();
-    this.loadCategoriesAndEvents();
   }
+
   loadCategoriesAndEvents(): void {
     this.eventService.getEventCategories().subscribe({
       next: (categoriesRes) => {
@@ -45,7 +65,9 @@ export class EventList implements OnInit {
             this.events = eventsRes
               .filter((event: any) => event.createdBy === this.currentUserId)
               .map((event: any) => {
-                const category = this.categories.find((cat) => cat.id === event.categoryId);
+                const category = this.categories.find(
+                  (cat) => cat.id === event.categoryId
+                );
                 return {
                   ...event,
                   categoryName: category ? category.name : 'Unknown',
@@ -53,64 +75,97 @@ export class EventList implements OnInit {
               });
             this.filteredEvents = [...this.events];
           },
-          error: (err) => {
-            console.error('Failed to fetch events:', err);
+          error: () => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Failed to fetch events.',
+            });
           },
         });
       },
-      error: (err) => {
-        console.error('Failed to fetch categories:', err);
+      error: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Failed to fetch categories.',
+        });
       },
     });
   }
- applyFilters(): void {
-  const searchLower = this.searchTerm.toLowerCase();
 
-  this.filteredEvents = this.events.filter((event) => {
-    const matchesSearch =
-      this.searchTerm === '' ||
-      event.title?.toLowerCase().includes(searchLower) ||
-      event.speakername?.toLowerCase().includes(searchLower) ||
-      event.status?.toLowerCase().includes(searchLower)||
-      event.address?.toLowerCase().includes(searchLower);
+  applyFilters(): void {
+    const searchLower = this.searchTerm.toLowerCase();
 
+    this.filteredEvents = this.events.filter((event) => {
+      const matchesSearch =
+        this.searchTerm === '' ||
+        event.title?.toLowerCase().includes(searchLower) ||
+        event.speakername?.toLowerCase().includes(searchLower) ||
+        event.status?.toLowerCase().includes(searchLower) ||
+        event.address?.toLowerCase().includes(searchLower);
 
-    const matchesCategory =
-      this.selectedCategoryName === '' || event.categoryName === this.selectedCategoryName;
+      const matchesCategory =
+        this.selectedCategoryName === '' ||
+        event.categoryName === this.selectedCategoryName;
 
-    const matchesStatus =
-      this.selectedStatus === '' || event.status === this.selectedStatus;
+      const matchesStatus =
+        this.selectedStatus === '' || event.status === this.selectedStatus;
 
-    return matchesSearch && matchesCategory && matchesStatus;
-  });
-}
+      return matchesSearch && matchesCategory && matchesStatus;
+    });
+  }
 
   confirmDelete(id: number): void {
-
-    // Find the event by id
     const eventToDelete = this.events.find((event) => event.id === id);
     if (!eventToDelete) {
-      alert('Event not found.');
-      return;
-    }
-    if (eventToDelete.status === 'Completed') {
-      alert('Cannot delete an event with status "Completed".');
-      return;
-    }
-    const confirmed = confirm('Are you sure you want to delete this event?');
-    if (confirmed) {
-      this.eventService.deleteEvent(id).subscribe({
-        next: () => {
-          alert('Event deleted successfully.');
-          // Reload events after deletion to refresh list
-          this.loadCategoriesAndEvents();
-        },
-        error: () => {
-          alert('Failed to delete the event.');
-        },
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Not Found',
+        detail: 'Event not found.',
       });
+      return;
     }
+
+    if (eventToDelete.status === 'Completed') {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Not Allowed',
+        detail: 'Cannot delete a completed event.',
+      });
+      return;
+    }
+
+    this.confirmationService.confirm({
+      message: `Are you sure you want to delete "${eventToDelete.title}"?`,
+      header: 'Confirm Deletion',
+      icon: 'pi pi-exclamation-triangle',
+      acceptLabel: 'Yes, Delete',
+      rejectLabel: 'Cancel',
+      acceptButtonStyleClass: 'p-button-danger',
+      rejectButtonStyleClass: 'p-button-secondary',
+      accept: () => {
+        this.eventService.deleteEvent(id).subscribe({
+          next: () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Deleted',
+              detail: 'Event deleted successfully!',
+            });
+            this.loadCategoriesAndEvents();
+          },
+          error: () => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Failed to delete the event.',
+            });
+          },
+        });
+      },
+    });
   }
+
   updateEvent(id: number): void {
     this.router.navigate(['/dashboard/event-edit', id]);
   }

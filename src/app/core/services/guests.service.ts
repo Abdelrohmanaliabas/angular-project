@@ -21,7 +21,7 @@ export class GuestsService {
     page = 1,
     limit = 10,
     q?: string,
-    allowedEventIds: number[] = [] // ← أضفنا دعم eventIds
+    allowedEventIds: number[] = []
   ): Observable<{ data: GuestModel[]; total: number }> {
     return this.http.get<GuestModel[]>(this.base).pipe(
       map((data) => {
@@ -52,5 +52,8 @@ export class GuestsService {
 
   update(id: number | string, data: Partial<GuestModel>) {
     return this.http.patch(`${this.base}/${id}`, data);
+  }
+  create(data: any) {
+    return this.http.post(this.base, data);
   }
 }

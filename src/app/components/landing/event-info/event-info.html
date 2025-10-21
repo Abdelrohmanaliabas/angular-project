@@ -1,33 +1,113 @@
-<section class="py-20 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
-  <div class="max-w-4xl mx-auto px-6">
+<section class="py-20 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+  <div class="max-w-5xl mx-auto px-6">
     <ng-container *ngIf="event$ | async as event; else loading">
+      <ng-container *ngIf="!event.error; else notFound">
 
-      <!-- الصورة -->
-      <img [src]="event.eventImage || 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800'"
-        alt="{{ event.name }}" class="w-full h-80 object-cover rounded-2xl shadow-lg mb-8" />
-
-      <!-- التفاصيل -->
-      <h1 class="text-4xl font-bold mb-4">{{ event.name }}</h1>
-      <p class="text-gray-500 mb-4">{{ event.category }} • {{ event.location }}</p>
-
-      <div class="flex items-center text-sm text-gray-400 mb-6 space-x-4">
-        <span>📅 {{ event.startDate | date:'mediumDate' }} →
-          {{ event.endDate | date:'mediumDate' }}</span>
-        <span class="px-3 py-1 bg-pink-500 text-white rounded-full text-xs">{{ event.status }}</span>
-      </div>
-
-      <p class="leading-relaxed text-lg mb-8">{{ event.description }}</p>
-
-      <!-- التعليقات -->
-      <div *ngIf="event.comments?.length">
-        <h2 class="text-2xl font-semibold mb-4">💬 Comments</h2>
-        <div *ngFor="let comment of event.comments" class="bg-white/10 p-4 rounded-lg mb-3 border border-gray-700/20">
-          <p>{{ comment.comment }}</p>
+        <div *ngIf="event.images?.length; else singleImage" class="mb-10">
+          <p-carousel
+            [value]="event.images"
+            [numVisible]="1"
+            [numScroll]="1"
+            [circular]="true"
+            [autoplayInterval]="3500"
+            [showIndicators]="true"
+            [showNavigators]="true"
+            class="rounded-2xl shadow-lg"
+          >
+            <ng-template pTemplate="item" let-img>
+              <div class="relative">
+                <img
+                  [src]="img"
+                  alt="{{ event.title }}"
+                  class="w-full h-96 object-cover rounded-2xl transition-transform duration-500 hover:scale-105"
+                />
+              </div>
+            </ng-template>
+          </p-carousel>
         </div>
-      </div>
 
-      <!-- لو مفيش -->
-      <div *ngIf="!event.comments?.length" class="text-gray-400">No comments yet.</div>
+        <!-- 🖼️ صورة واحدة افتراضية -->
+        <ng-template #singleImage>
+          <img
+            [src]="event.eventImage || 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=800'"
+            alt="{{ event.title }}"
+            class="w-full h-96 object-cover rounded-2xl shadow-lg mb-10"
+          />
+        </ng-template>
+
+        <div class="space-y-6">
+          <h1 class="text-4xl font-bold">{{ event.title }}</h1>
+          <p class="text-gray-500 dark:text-gray-400">
+            <i class="pi pi-map-marker text-pink-500"></i>
+            {{ event.address }}
+          </p>
+
+          <div class="flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+            <span>📅 <b>{{ event.startDate | date:'mediumDate' }}</b> → <b>{{ event.endDate | date:'mediumDate' }}</b></span>
+            <span>🕒 <b>{{ event.time }}</b></span>
+            <span>🎤 Speaker: <b>{{ event.speakername }}</b></span>
+            <span>📞 {{ event.phone }}</span>
+            <span>📧 {{ event.email }}</span>
+          </div>
+
+          <p class="leading-relaxed text-lg">{{ event.details }}</p>
+
+          <div class="mt-6">
+              <p class="text-gray-500 mb-4">
+                <i class="pi pi-tag text-pink-500 mr-1"></i>
+                {{ event.categoryName || 'Uncategorized' }}
+              </p>
+
+          </div>
+        </div>
+
+        <div class="mt-14 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+          <h2 class="text-2xl font-semibold mb-6 flex items-center gap-2">
+            ⭐ Feedback
+            <span class="text-sm text-gray-400 font-normal">({{ event.feedback?.length || 0 }})</span>
+          </h2>
+
+          <div *ngIf="!event.feedback?.length" class="text-gray-400 text-center py-6">
+            No feedback yet.
+          </div>
+
+          <div *ngFor="let fb of event.feedback" class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
+            <div class="flex items-center justify-between mb-1">
+              <span class="font-semibold text-base">{{ fb.name || 'Anonymous' }}</span>
+              <div class="flex items-center gap-1">
+                <ng-container *ngFor="let star of getStars(fb.rating)">
+                  <i
+                    class="pi"
+                    [ngClass]="{
+                      'pi-star-fill text-yellow-400': star === 1,
+                      'pi-star text-gray-400': star === 0
+                    }"
+                  ></i>
+                </ng-container>
+              </div>
+            </div>
+            <p class="text-sm text-gray-600 dark:text-gray-300">{{ fb.comment }}</p>
+          </div>
+        </div>
+
+        <div class="mt-14 bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6">
+          <h2 class="text-2xl font-semibold mb-6">💬 Comments</h2>
+
+          <div *ngIf="event.comments?.length; else noComments">
+            <div *ngFor="let comment of event.comments" class="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
+              <p class="text-gray-700 dark:text-gray-300">{{ comment.comment }}</p>
+            </div>
+          </div>
+
+          <ng-template #noComments>
+            <p class="text-gray-400 text-center">No comments yet.</p>
+          </ng-template>
+        </div>
+      </ng-container>
+
+      <ng-template #notFound>
+        <div class="text-center text-red-500 py-10 font-semibold">⚠️ Event not found or invalid ID.</div>
+      </ng-template>
     </ng-container>
 
     <ng-template #loading>
