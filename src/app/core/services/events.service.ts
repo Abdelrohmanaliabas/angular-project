@@ -9,7 +9,7 @@ export interface EventModel {
   id: number;
   title: string;
   description: string;
-  category: string;
+  categoryId: string;
   location: string;
   startDate: string; // ISO format
   endDate: string;   // ISO format
@@ -61,7 +61,7 @@ export class EventsService {
   }
 
   // 🔍 إحضار حدث واحد بالتفاصيل
-  getById(id: number): Observable<EventWithRelations> {
+  getById(id: string): Observable<EventWithRelations> {
     const url = `${this.base}/${id}?_embed=comments&_embed=feedback`;
     return this.http.get<EventWithRelations>(url);
   }

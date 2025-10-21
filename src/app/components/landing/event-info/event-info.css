@@ -9,3 +9,24 @@ img {
 img:hover {
   transform: scale(1.02);
 }
+:host ::ng-deep .p-carousel .p-carousel-indicators .p-carousel-indicator button {
+  background-color: #cbd5e1; /* gray-300 */
+  transition: all 0.3s ease;
+}
+:host ::ng-deep .p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+  background-color: #0f7fd9; /* primary color */
+}
+:host ::ng-deep .p-carousel .p-carousel-next,
+:host ::ng-deep .p-carousel .p-carousel-prev {
+  background-color: rgba(15, 127, 217, 0.8);
+  border: none;
+  color: white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+:host ::ng-deep .p-carousel .p-carousel-next:hover,
+:host ::ng-deep .p-carousel .p-carousel-prev:hover {
+  transform: scale(1.1);
+}
