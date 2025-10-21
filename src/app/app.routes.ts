@@ -15,7 +15,7 @@ import { EventDetails as DashboardEventDetails} from './components/dashboard/eve
 import { EventList as DashboardEventList} from './components/dashboard/events/event-list/event-list';
 import { EventExpenses as DashboardExpenses } from './components/dashboard/events/event-expenses/event-expenses';
 import { SpeakerInfo as DashboardSpeakerInfo } from './components/dashboard/speaker-info/speaker-info';
-
+import { AddSpeaker } from './components/dashboard/add-speaker/add-speaker';
 import { Home } from './components/landing/home/home';
 import { About } from './components/landing/about/about';
 import { Speakers } from './components/landing/speakers/speakers';
@@ -24,6 +24,7 @@ import { Blog } from './components/landing/blog/blog';
 import { GetTicket } from './components/landing/get-ticket/get-ticket';
 import { MainLayout } from './components/landing/main-layout';
 import { EventInfo } from './components/landing/event-info/event-info';
+import { EditSpeaker } from './components/dashboard/edit-speaker/edit-speaker';
 
 // Guards
 import { authGuard } from './core/guards/auth.guard';
@@ -53,7 +54,9 @@ export const routes: Routes = [
       { path: 'event-creation' , component: DashboardEventCreation},
       { path: 'event-edit/:id' , component: DashboardEventCreation},
       { path: 'event-list' , component: DashboardEventList},
-      { path: 'event-details/:id' , component: DashboardEventDetails},
+      { path: 'event-details/:id', component: DashboardEventDetails },
+      { path: 'add-speaker', component: AddSpeaker },
+      { path: 'edit-speaker/:id', component: EditSpeaker },
     ],
   },
   {
