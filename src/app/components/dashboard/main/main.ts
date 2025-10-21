@@ -2,10 +2,10 @@ import { Component, OnInit, AfterViewInit, ViewChild, ElementRef } from '@angula
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import Chart from 'chart.js/auto';
-
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-main',
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule,RouterModule],
   templateUrl: './main.html',
   styleUrl: './main.css'
 })
@@ -61,16 +61,7 @@ export class Main implements OnInit, AfterViewInit {
       this.totalSpeakers = speakerSet.size;
     });
 
-    // tickets endpoint optional - if you keep ticket sales there:
-    this.http.get<any[]>('http://localhost:3000/tickets').subscribe(tickets => {
-      this.tickets = tickets || [];
-      this.ticketsSold = this.tickets.reduce((sum, t) => sum + (t.quantity || 1), 0);
-      this.createOrUpdateCharts();
-    }, _ => {
-      // fallback: estimate tickets from guests length
-      this.ticketsSold = this.guests.length;
-      this.createOrUpdateCharts();
-    });
+
   }
 
   private createOrUpdateCharts() {
