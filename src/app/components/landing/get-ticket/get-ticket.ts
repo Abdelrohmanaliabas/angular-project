@@ -31,7 +31,6 @@ export class GetTicket implements OnInit {
       eventId: [null, Validators.required],
     });
 
-    // تحميل الأحداث من JSON Server
     this.http.get('http://localhost:3000/events').subscribe((data: any) => {
       this.events = data;
     });
@@ -44,7 +43,6 @@ export class GetTicket implements OnInit {
     const formData = this.ticketForm.value;
     const eventId = Number(formData.eventId);
 
-    // ✅ تأكد أن eventId رقم صحيح
     if (!eventId || isNaN(eventId)) {
       this.formMessage = 'Please select a valid event.';
       this.loading = false;
