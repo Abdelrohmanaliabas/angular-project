@@ -3,13 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Events } from '../../../../services/events';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
 
 @Component({
   selector: 'app-event-details',
   templateUrl: './event-details.html',
   styleUrls: ['./event-details.css'],
-  imports:[CommonModule ,FormsModule]
+  imports:[CommonModule ,FormsModule,RouterModule]
 })
 export class EventDetails implements OnInit {
   eventId: string = '';
